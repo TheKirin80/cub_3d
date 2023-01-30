@@ -6,7 +6,7 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 18:04:06 by akefeder          #+#    #+#             */
-/*   Updated: 2023/01/27 19:26:25 by akefeder         ###   ########.fr       */
+/*   Updated: 2023/01/30 15:15:46 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int	check_carac(char buf[BUFFER_SIZE + 1] , char *src_verif)
 		find = 0;
 		while (find == 0 && src_verif[j] != '\0')
 		{
-			if (buf[i] = src_verif[j])
+			if (buf[i] == src_verif[j])
 				find = 1;
 			j++;
 		}

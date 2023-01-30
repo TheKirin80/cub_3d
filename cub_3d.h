@@ -6,7 +6,7 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 15:28:43 by akefeder          #+#    #+#             */
-/*   Updated: 2023/01/27 21:56:29 by akefeder         ###   ########.fr       */
+/*   Updated: 2023/01/30 15:51:17 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@
 # define KEY_A 97
 # define KEY_D 100
 # define KEY_ECHAP 65307
-# define CARACT_OK "01NOSEAW "
+# define CARACT_OK "01NOSEAW\n "
 
 typedef struct s_map	t_map;
 typedef struct s_file	t_file;
@@ -59,12 +59,12 @@ struct s_file
 	int		py;
 	int		nbr_coup;
 	int		keycode;
-	void	*F;
-	void	*C;
-	void	*NO;
-	void	*SO;
-	void	*WE;
-	void	*EA;
+	int		F;
+	int		C;
+	char	*NO;
+	char	*SO;
+	char	*WE;
+	char	*EA;
 };
 
 struct	s_lect
@@ -104,7 +104,9 @@ int		load_img(t_file *file);
 int		charg_file(t_file *file);
 // --------------- gest_close.c  ---------------
 void	destroy_img(t_file *file);
+void	free_direction(t_file *file);
 void	free_map(t_file *file);
+void	free_file(t_file *file);
 int		gest_close(t_file *file);
 
 #endif

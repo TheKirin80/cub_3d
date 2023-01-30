@@ -6,7 +6,7 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 02:16:16 by akefeder          #+#    #+#             */
-/*   Updated: 2023/01/27 18:58:37 by akefeder         ###   ########.fr       */
+/*   Updated: 2023/01/30 15:34:22 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,18 @@ int	verif_map(t_map *map)
 	if (verif_composant(map) == ERROR)
 		return (ERROR);
 	return (OK);
+}
+
+int	is_present(char src, char *src_verif)
+{
+	int	i;
+
+	i = 0;
+	while (src_verif[i] != '\0')
+	{
+		if (src_verif[i] == src)
+			return (i);
+		i++;
+	}
+	return (ERROR);
 }
