@@ -6,7 +6,7 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 18:04:35 by akefeder          #+#    #+#             */
-/*   Updated: 2023/01/27 19:26:37 by akefeder         ###   ########.fr       */
+/*   Updated: 2023/01/31 00:50:30 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	insert_static(char **tmp, int fd)
 	while (nb_car_lu > 0)
 	{
 		buf[nb_car_lu] = '\0';
-		if (check_carac(buf, CARACT_OK) == ERROR)
+		if (check_carac(buf) == ERROR)
 		{
 			if (*tmp)
 				free(*tmp);

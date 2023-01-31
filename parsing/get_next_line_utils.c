@@ -6,7 +6,7 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 18:04:06 by akefeder          #+#    #+#             */
-/*   Updated: 2023/01/30 15:15:46 by akefeder         ###   ########.fr       */
+/*   Updated: 2023/01/31 15:44:27 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,14 @@ char	*ft_strjoin(char *s1, char *s2)
 	return (res);
 }
 
-int	check_carac(char buf[BUFFER_SIZE + 1] , char *src_verif)
+int	is_printable(char c)
+{
+	if (c > 31)
+		return (OK);
+	return (ERROR);
+}
+
+int	check_carac(char buf[BUFFER_SIZE + 1])
 {
 	int	i;
 	int find;
@@ -74,17 +81,8 @@ int	check_carac(char buf[BUFFER_SIZE + 1] , char *src_verif)
 	i = 0;
 	while (buf[i] != '\0')
 	{
-		j = 0;
-		find = 0;
-		while (find == 0 && src_verif[j] != '\0')
-		{
-			if (buf[i] == src_verif[j])
-				find = 1;
-			j++;
-		}
-		if (find == 0)
+		if (is_printable(buf[i]) == ERROR && buf[i]!= ' ')
 			return (ERROR);
-		i++;
 	}
 	return (OK);
 }

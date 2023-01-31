@@ -6,7 +6,7 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 15:28:43 by akefeder          #+#    #+#             */
-/*   Updated: 2023/01/30 15:51:17 by akefeder         ###   ########.fr       */
+/*   Updated: 2023/01/31 16:35:33 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,10 @@ struct s_file
 	int		keycode;
 	int		F;
 	int		C;
-	char	*NO;
-	char	*SO;
-	char	*WE;
-	char	*EA;
+	char	*north;
+	char	*south;
+	char	*west;
+	char	*east;
 };
 
 struct	s_lect
