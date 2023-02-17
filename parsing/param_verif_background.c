@@ -6,7 +6,7 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 23:01:40 by akefeder          #+#    #+#             */
-/*   Updated: 2023/01/31 00:36:08 by akefeder         ###   ########.fr       */
+/*   Updated: 2023/02/07 19:27:50 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,3 +52,4 @@ int	check_background(char **tmp, t_file *file, t_map *map)
 		
 	}
 }
+
