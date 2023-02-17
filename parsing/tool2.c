@@ -6,7 +6,7 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 02:16:16 by akefeder          #+#    #+#             */
-/*   Updated: 2023/01/31 19:25:41 by akefeder         ###   ########.fr       */
+/*   Updated: 2023/02/17 19:57:01 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,28 @@ int	is_present(char src, char *src_verif)
 		i++;
 	}
 	return (ERROR);
+}
+
+int	is_num(char src)
+{
+	if (src > 47 && src < 58)
+		return (OK);
+	return (ERROR);
+}
+
+int ft_atoi_color(char *color)
+{
+	int	i;
+	int	ret;
+	
+	i = 0;
+	ret = 0;
+	while (i < 3)
+	{
+		ret = (ret * 10) + (color[i] - 48);
+		if (ret > 255)
+			return (ERROR);
+		i++;
+ 	}
+	return (OK);
 }

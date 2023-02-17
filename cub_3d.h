@@ -6,7 +6,7 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 15:28:43 by akefeder          #+#    #+#             */
-/*   Updated: 2023/01/31 16:35:33 by akefeder         ###   ########.fr       */
+/*   Updated: 2023/02/17 20:31:23 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@
 # define OK 0
 # define END 0
 # define NOTFIND 0
+# define NOTFULL 0
+# define FULL 1
 # define FIND 1
 # define CONTINUE 1
 # define SIZEPIC 36
@@ -59,12 +61,15 @@ struct s_file
 	int		py;
 	int		nbr_coup;
 	int		keycode;
+	int		find_F;
+	int		find_C;
 	int		F;
 	int		C;
 	char	*north;
 	char	*south;
 	char	*west;
 	char	*east;
+	int		full;
 };
 
 struct	s_lect
@@ -96,6 +101,8 @@ void	ft_putnbr(int i);
 // --------------- tool2.c  ---------------
 void	affichage(t_file *file, int i);
 int		verif_map(t_map *map);
+int		is_present(char src, char *src_verif);
+int		is_num(char src);
 // --------------- error.c  ---------------
 int		gest_error(t_map *map, int code, t_file *file);
 void	gest_error_map(t_map *map);
@@ -108,5 +115,16 @@ void	free_direction(t_file *file);
 void	free_map(t_file *file);
 void	free_file(t_file *file);
 int		gest_close(t_file *file);
-
+// --------------- check_line.c  ---------------
+int		north(char *line, t_file *file);
+int		south(char *line, t_file *file);
+int		east(char *line, t_file *file);
+int		west(char *line, t_file *file);
+int		color(char *line, t_file *file);
+// --------------- check_line_copy.c  ---------------
+char	*ft_i_cpt_strcopy(char *line, int deb, int cpt);
+int		is_num(char c);
+int		ft_strlen_num(char *str, int i);
+int		check_etat(char *line, int deb, int cpt);
+int		*ft_i_cpt_intcopy(char *line, int deb, int cpt);
 #endif

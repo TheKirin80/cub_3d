@@ -6,7 +6,7 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 15:30:16 by akefeder          #+#    #+#             */
-/*   Updated: 2023/01/31 19:53:40 by akefeder         ###   ########.fr       */
+/*   Updated: 2023/02/17 20:43:56 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,7 @@ int	east(char *line, t_file *file)
 	while(line[i] != '\0' && line[i] == ' ')
 		i++;
 	if (line[i] != '\0')
-		return (ERROR);
+		return (ERROR);  
 	file->east = ft_i_cpt_strcopy(line, deb, cpt);
 	if (file->east == NULL)
 		return (ERROR);
@@ -152,7 +152,7 @@ int	color(char *line, t_file *file)
 	else
 		file->C = ft_i_cpt_intcopy(line, deb, cpt);
 	if (line[0] == 'F')
-		return (file->F);
+		return (file->find_F = 1, file->F);
 	else
-		return (file->C);
+		return (file->find_C = 1, file->C);
 }
