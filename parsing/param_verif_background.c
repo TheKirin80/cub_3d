@@ -6,7 +6,7 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 23:01:40 by akefeder          #+#    #+#             */
-/*   Updated: 2023/02/18 00:33:14 by akefeder         ###   ########.fr       */
+/*   Updated: 2023/02/20 01:12:22 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ int line_full_space(char *line)
 	int i;
 	
 	i = 0;
-	while (param[i] == ' ')
+	while (line[i] == ' ')
 	{
 		i++;
 	}
-	if (param[i] == '\0')
+	if (line[i] == '\0')
 		return (OK);
 	return (ERROR);
 }
@@ -29,29 +29,41 @@ int line_full_space(char *line)
 int	fill_param(char *param, t_file *file, char c)
 {
 	if (c == 'N')
+	{
 		if (north(param, file) == ERROR)
 			return (ERROR);
+	}
 	else if (c == 'S')
+	{
 		if (south(param, file) == ERROR)
 			return (ERROR);
+	}
 	else if (c == 'W')
+	{
 		if (west(param, file) == ERROR)
 			return (ERROR);
+	}
 	else if (c == 'E')
+	{
 		if (east(param, file) == ERROR)
 			return (ERROR);
+	}
 	else if (c == 'F')
+	{
 		if (color(param, file) == ERROR)
 			return (ERROR);
+	}
 	else if (c == 'C')
+	{
 		if (color(param, file) == ERROR)
 			return (ERROR);
+	}
 	return (OK);
 }
 
 int find_param(char *param, t_file *file)
 {
-	int	find
+	int	find;
 	char *carac;
 
 	carac = "NSWEFC";
@@ -69,7 +81,7 @@ int find_param(char *param, t_file *file)
 
 
 
-int	check_background(char **tmp, t_file *file, t_map *map)
+int	check_background(char **tmp, t_file *file)
 {
 	int	i;
 

@@ -6,10 +6,11 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 18:59:42 by akefeder          #+#    #+#             */
-/*   Updated: 2023/01/27 19:31:59 by akefeder         ###   ########.fr       */
+/*   Updated: 2023/02/20 01:21:18 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../cub_3d.h"
 
 void	add_tmp_help(char **tmp, char *line, char **save)
 {
@@ -43,13 +44,13 @@ int	add_tmp(char **tmp, char *line)
 		save[1] = NULL;
 	}
 	else
-		add_map_help(tmp, line, save);
+		add_tmp_help(tmp, line, save);
 	free(tmp);
 	tmp = save;
 	return (OK);
 }
 
-int	rempli_map_help(int *fd, char *av)
+int	rempli_tmp_help(int *fd, char *av)
 {
 	*fd = open(av, O_RDONLY);
 	if (*fd == -1)
@@ -57,7 +58,7 @@ int	rempli_map_help(int *fd, char *av)
 	return (OK);
 }
 
-int	rempli_tmp(char *av, char **tmp)
+int	rempli_tmp(char *av, t_file *file)
 {
 	int		fd;
 	char	*line;
@@ -69,7 +70,7 @@ int	rempli_tmp(char *av, char **tmp)
 	ret = get_next_line(fd, &line, 0);
 	while (ret > 0)
 	{
-		if (add_tmp(tmp, line) == ERROR)
+		if (add_tmp(file->tmp, line) == ERROR)
 			return (close(fd), ERROR);
 		line = NULL;
 		ret = get_next_line(fd, &line, 0);
@@ -79,7 +80,7 @@ int	rempli_tmp(char *av, char **tmp)
 	if (ret == -1)
 		return (ERROR);
 	else
-		if (add_tmp(tmp, line) == ERROR)
+		if (add_tmp(file->tmp, line) == ERROR)
 			return (ERROR);
 	line = NULL;
 	return (OK);

@@ -6,11 +6,11 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 19:26:46 by akefeder          #+#    #+#             */
-/*   Updated: 2023/02/17 20:26:03 by akefeder         ###   ########.fr       */
+/*   Updated: 2023/02/20 03:18:10 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3D.h"
+#include "../cub_3d.h"
 
 char	*ft_i_cpt_strcopy(char *line, int deb, int cpt)
 {
@@ -30,17 +30,11 @@ char	*ft_i_cpt_strcopy(char *line, int deb, int cpt)
 	return (cpy);
 }
 
-int	is_num(char c)
-{
-	if (c > 47 && c < 58)
-		return (OK);
-	return (ERROR);
-}
-
 int ft_strlen_num(char *str, int i)
 {
 	int	ret;
 	
+	ret = 0;
 	while (str[i] != '\0' && is_num(str[i]) == OK)
 	{
 		i++;
@@ -73,7 +67,7 @@ int	check_etat(char *line, int deb, int cpt)
 	return (OK);
 }
 
-int		*ft_i_cpt_intcopy(char *line, int deb, int cpt)
+int		ft_i_cpt_intcopy(char *line, int deb, int cpt)
 {
 	int	j;
 	int	ret;
@@ -89,12 +83,12 @@ int		*ft_i_cpt_intcopy(char *line, int deb, int cpt)
 		color[0] = line[deb + ((j * 3) + j) + 0];
 		color[1] = line[deb + ((j * 3) + j) + 1];
 		color[2] = line[deb + ((j * 3) + j) + 2];
-		stock = ft_atoi(color);
+		stock = ft_atoi_color(color);
 		if (stock == ERROR)
 			return (ERROR);
 		ret = ret + stock;
 		if (j < 2)
-			ret == ret << 8;
+			ret = ret << 8;
 		j++;
 	}
 	return (ret);

@@ -6,7 +6,7 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 15:28:58 by akefeder          #+#    #+#             */
-/*   Updated: 2023/01/27 18:58:37 by akefeder         ###   ########.fr       */
+/*   Updated: 2023/02/20 00:17:51 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,21 +41,20 @@ int	test_fich(char *av)
 
 int	main(int ac, char **av)
 {
-	t_map	map;
 	t_file	file;
 
 	file = (t_file){0};
 	//prepa_map(&map);
 	if (ac != 2 || test_fich(av[1]) == ERROR)
-		return (gest_error(&map, 1, &file));
-	if (rempli_map(av[1], &map) == ERROR || verif_map(&map))
-		return (gest_error(&map, 2, &file));
-	file.map = &map;
-	if (charg_file(&file) == ERROR)
-		return (gest_error(&map, 3, &file));
-	affiche_map(&file);
-	mlx_hook(file.win, KeyPress, KeyPressMask, gest_moove, &file);
-	mlx_hook(file.win, ClientMessage, LeaveWindowMask, gest_close, &file);
-	mlx_loop(file.mlx);
+		return (gest_error(1, &file));
+	if (rempli_tmp(av[1], &file) == ERROR || parsing(av[1], &file))
+		return (gest_error(2, &file));
+	// file.map = &map;
+	// if (charg_file(&file) == ERROR)
+	// 	return (gest_error(&map, 3, &file));
+	// affiche_map(&file);
+	// mlx_hook(file.win, KeyPress, KeyPressMask, gest_moove, &file);
+	// mlx_hook(file.win, ClientMessage, LeaveWindowMask, gest_close, &file);
+	// mlx_loop(file.mlx);
 	return (0);
 }

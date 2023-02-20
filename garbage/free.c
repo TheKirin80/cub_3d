@@ -6,7 +6,7 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 16:47:46 by akefeder          #+#    #+#             */
-/*   Updated: 2023/01/30 15:49:14 by akefeder         ###   ########.fr       */
+/*   Updated: 2023/02/20 01:14:14 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,12 @@ void	free_tmp(char **tmp)
 	int	i;
 	
 	i = 0;
-	while (tmp[i] != NULL)
+	while (tmp && tmp[i] != NULL)
 	{
 		free(tmp[i]);
 		i++;
 	}
-	free(tmp);
+	if (tmp)
+		free(tmp);
 	tmp = NULL;
 }

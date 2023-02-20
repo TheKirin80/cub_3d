@@ -6,7 +6,7 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 18:04:06 by akefeder          #+#    #+#             */
-/*   Updated: 2023/01/31 15:44:27 by akefeder         ###   ########.fr       */
+/*   Updated: 2023/02/20 01:06:55 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,6 @@ int	is_printable(char c)
 int	check_carac(char buf[BUFFER_SIZE + 1])
 {
 	int	i;
-	int find;
 
 	i = 0;
 	while (buf[i] != '\0')
