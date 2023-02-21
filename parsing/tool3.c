@@ -1,30 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   tool3.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/19 12:57:09 by akefeder          #+#    #+#             */
-/*   Updated: 2023/02/21 00:41:39 by akefeder         ###   ########.fr       */
+/*   Created: 2023/02/21 00:18:08 by akefeder          #+#    #+#             */
+/*   Updated: 2023/02/21 00:20:12 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub_3d.h"
 
-int	gest_error(int code, t_file *file)
+void	rempli_zero(int *tab, int size)
 {
-	if (code == 1)
-		ft_putstr_fd("Error : false parameters\n", 2);
-	else if (code == 2)
+	int	i;
+
+	i = 0;
+	while (i < size)
 	{
-		//free_file(file);
-		ft_putstr_fd("Error : map don't follow the rules\n", 2);
+		tab[i] = 0;
+		i++;
 	}
-	else
-	{
-		free_file(file);
-		ft_putstr_fd("Error : Cannot print map\n", 2);
-	}
-	exit (1);
 }

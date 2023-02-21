@@ -6,7 +6,7 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 15:28:58 by akefeder          #+#    #+#             */
-/*   Updated: 2023/02/20 00:17:51 by akefeder         ###   ########.fr       */
+/*   Updated: 2023/02/20 13:45:46 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	main(int ac, char **av)
 	//prepa_map(&map);
 	if (ac != 2 || test_fich(av[1]) == ERROR)
 		return (gest_error(1, &file));
-	if (rempli_tmp(av[1], &file) == ERROR || parsing(av[1], &file))
+	if (parsing(av[1], &file))
 		return (gest_error(2, &file));
 	// file.map = &map;
 	// if (charg_file(&file) == ERROR)

@@ -6,32 +6,32 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 18:59:42 by akefeder          #+#    #+#             */
-/*   Updated: 2023/02/20 01:21:18 by akefeder         ###   ########.fr       */
+/*   Updated: 2023/02/21 00:55:03 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub_3d.h"
 
-void	add_tmp_help(char **tmp, char *line, char **save)
+void	add_tmp_help(t_file *file, char *line, char **save)
 {
 	int	i;
 
 	i = 0;
-	while (tmp[i] != NULL)
+	while (file->tmp[i] != NULL)
 	{
-		save[i] = tmp[i];
+		save[i] = file->tmp[i];
 		i++;
 	}
 	save[i] = line;
 	save[i + 1] = NULL;
 }
 
-int	add_tmp(char **tmp, char *line)
+int	add_tmp(t_file *file, char *line)
 {
 	char	**save;
 	int		len;
 
-	len = ft_maplen(tmp);
+	len = ft_maplen(file->tmp);
 	save = malloc((len + 2) * sizeof(char *));
 	if (save == NULL)
 	{
@@ -44,9 +44,9 @@ int	add_tmp(char **tmp, char *line)
 		save[1] = NULL;
 	}
 	else
-		add_tmp_help(tmp, line, save);
-	free(tmp);
-	tmp = save;
+		add_tmp_help(file, line, save);
+	free(file->tmp);
+	file->tmp = save;
 	return (OK);
 }
 
@@ -68,20 +68,24 @@ int	rempli_tmp(char *av, t_file *file)
 		return (ERROR);
 	line = NULL;
 	ret = get_next_line(fd, &line, 0);
+	//printf("\nline : %s\n", line);
 	while (ret > 0)
 	{
-		if (add_tmp(file->tmp, line) == ERROR)
+		if (add_tmp(file, line) == ERROR)
 			return (close(fd), ERROR);
+		//print_tab(file->tmp);
 		line = NULL;
 		ret = get_next_line(fd, &line, 0);
+		//printf("\nline : %s\n", line);
 	}
 	get_next_line(fd, &line, 1);
 	close(fd);
 	if (ret == -1)
 		return (ERROR);
 	else
-		if (add_tmp(file->tmp, line) == ERROR)
+		if (add_tmp(file, line) == ERROR)
 			return (ERROR);
 	line = NULL;
+	//printf("\t\t\ttout va bien\n");
 	return (OK);
 }

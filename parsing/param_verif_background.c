@@ -6,7 +6,7 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 23:01:40 by akefeder          #+#    #+#             */
-/*   Updated: 2023/02/20 01:12:22 by akefeder         ###   ########.fr       */
+/*   Updated: 2023/02/21 00:59:22 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,15 +81,15 @@ int find_param(char *param, t_file *file)
 
 
 
-int	check_background(char **tmp, t_file *file)
+int	check_background(t_file *file)
 {
 	int	i;
 
 	i = 0;
-	while (tmp[i] != NULL && file->full == 0)
+	while (file->tmp[i] != NULL && file->full == 0)
 	{
-		if (find_param(tmp[i],file) == ERROR)
-			return (free_tmp(tmp), free_file(file), ERROR);
+		if (find_param(file->tmp[i],file) == ERROR)
+			return (ERROR);
 		i++;
 		file->full = is_full(file);
 	}

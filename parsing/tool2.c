@@ -6,7 +6,7 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 02:16:16 by akefeder          #+#    #+#             */
-/*   Updated: 2023/02/20 01:22:36 by akefeder         ###   ########.fr       */
+/*   Updated: 2023/02/21 01:06:09 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,12 +71,12 @@ int ft_atoi_color(char *color)
 	
 	i = 0;
 	ret = 0;
-	while (i < 3)
+	while (color[i] != '\0')
 	{
 		ret = (ret * 10) + (color[i] - 48);
 		if (ret > 255)
 			return (ERROR);
 		i++;
  	}
-	return (OK);
+	return (ret);
 }

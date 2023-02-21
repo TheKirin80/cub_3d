@@ -14,7 +14,8 @@ PARS_FILES	=	check_line.c\
 				parsing.c\
 				tmp.c\
 				tool.c\
-				tool2.c		
+				tool2.c\
+				tool3.c	
 GAME_FILES	=	file.c			
 GARB_FILES	=	error.c\
 				free.c\
@@ -39,7 +40,7 @@ CC 		= clang
 
 RM 		= rm -f
 
-CFLAGS	= -Wall -Wextra -Werror #-g3 #-O3 #-fsanitize=address
+CFLAGS	= -Wall -Wextra -Werror -g3 #-O3 #-fsanitize=address
 
 all:		${NAME}
 

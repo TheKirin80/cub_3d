@@ -6,7 +6,7 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 15:28:43 by akefeder          #+#    #+#             */
-/*   Updated: 2023/02/20 03:18:28 by akefeder         ###   ########.fr       */
+/*   Updated: 2023/02/21 00:20:47 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,8 @@ void	ft_putnbr(int i);
 int		is_present(char src, char *src_verif);
 int		is_num(char src);
 int		ft_atoi_color(char *color);
+// --------------- tool3.c  ---------------
+void	rempli_zero(int *tab, int size);
 // --------------- error.c  ---------------
 int		gest_error(int code, t_file *file);
 // --------------- file.c  ---------------
@@ -133,13 +135,14 @@ int		ft_i_cpt_intcopy(char *line, int deb, int cpt);
 int		line_full_space(char *line);
 int		fill_param(char *param, t_file *file, char c);
 int		find_param(char *param, t_file *file);
-int		check_background(char **tmp, t_file *file);
+int		check_background(t_file *file);
 // --------------- utils_param_verif_background.c  ---------------
 int		is_full(t_file *file);
 int		already_up(char c, t_file *file);
 // --------------- free.c  ---------------
 void	free_tmp(char **tmp);
 // --------------- printer.c  ---------------
+void	print_part_tab(char *tab, int deb);
 void	print_tab(char **tab);
 void	print_file(t_file *file);
 // --------------- parsing.c  ---------------
