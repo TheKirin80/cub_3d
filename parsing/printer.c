@@ -6,7 +6,7 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 00:22:54 by akefeder          #+#    #+#             */
-/*   Updated: 2023/02/20 18:05:20 by akefeder         ###   ########.fr       */
+/*   Updated: 2023/03/22 21:03:33 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,23 +26,24 @@ void	print_part_tab(char *tab, int deb)
 	printf("\n");
 }
 
-void	print_tab(char **tab)
+void	print_tab(char **tab, char *msg)
 {
 	int i;
 
 	i = 0;
+	printf("\n-------------%s--------------\n", msg);
 	while (tab[i] != NULL)
 	{
 		printf("%s\n", tab[i]);
 		i++;
 	}
+	printf("-------------fin %s--------------\n",msg);
 }
 
-void	print_file(t_file *file)
+void	print_file(t_file *file, char *descriptor)
 {
-	printf("------------tmp------------\n\n\n");
-	print_tab(file->tmp);
-	printf("\n\n\n---------------------------\n");
+	printf("\t\t\t\t\t\t\t---------------------------\n");
+	print_tab(file->tmp, descriptor);
 	printf("north : %s\n", file->north);
 	printf("south : %s\n", file->south);
 	printf("east : %s\n", file->east);
@@ -50,5 +51,6 @@ void	print_file(t_file *file)
 	printf("F : %i\n", file->F);
 	printf("C : %i\n", file->C);
 	printf("full : %i\n", file->full);
+	printf("\t\t\t\t\t\t\t---------------------------\n");
 	
 }

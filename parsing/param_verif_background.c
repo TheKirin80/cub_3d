@@ -6,7 +6,7 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 23:01:40 by akefeder          #+#    #+#             */
-/*   Updated: 2023/02/21 00:59:22 by akefeder         ###   ########.fr       */
+/*   Updated: 2023/03/22 20:57:57 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,9 +90,21 @@ int	check_background(t_file *file)
 	{
 		if (find_param(file->tmp[i],file) == ERROR)
 			return (ERROR);
+		//printf("i : %i\t\tstr : %s\n", i, file->tmp[i]);
 		i++;
 		file->full = is_full(file);
 	}
+	//printf("je suis la\n");
+	if (file->full != 1)
+		return (ERROR);
+	//printf("i av : %i\n", i);
+	while (file->tmp[i] != NULL && line_full_space(file->tmp[i]) == OK)
+		i++;
+	//printf("i ap : %i\n", i);
+	if (rempli_map(file, i) == ERROR)
+		return (ERROR);
+	print_tab(file->map->map, " check map");
 	return (OK);
 }
+
 

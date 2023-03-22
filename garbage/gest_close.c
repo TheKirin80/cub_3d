@@ -6,7 +6,7 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 03:59:01 by akefeder          #+#    #+#             */
-/*   Updated: 2023/02/21 00:44:46 by akefeder         ###   ########.fr       */
+/*   Updated: 2023/03/22 21:06:28 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,17 @@ void	free_map(t_file *file)
 	int	i;
 
 	i = 0;
-	while (file->map->map[i] != NULL)
+	if (file->map->map != NULL)
 	{
-		free(file->map->map[i]);
-		i++;
+		while (file->map->map[i] != NULL)
+		{
+			free(file->map->map[i]);
+			i++;
+		}
+		free(file->map->map);
 	}
-	free(file->map->map);
+	if (file->map != NULL)
+		free(file->map);
 }
 
 void	free_file(t_file *file)
@@ -63,8 +68,8 @@ void	free_file(t_file *file)
 		mlx_destroy_display(file->mlx);
 	if (file->mlx)
 		free(file->mlx);
-	if (file->map != NULL)
-		free_map(file);
+ 	if (file->map != NULL)
+ 		free_map(file);
 }
 
 int	gest_close(t_file *file)

@@ -6,7 +6,7 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 15:30:16 by akefeder          #+#    #+#             */
-/*   Updated: 2023/02/20 00:51:35 by akefeder         ###   ########.fr       */
+/*   Updated: 2023/03/14 18:15:00 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ int	north(char *line, t_file *file)
 		i++;
 	cpt = 0;
 	deb = i;
+	if (line[i] == '\0')
+		return (ERROR);
 	while (line[i] != '\0' && line[i] != ' ')
 	{
 		i++;
@@ -53,6 +55,8 @@ int	south(char *line, t_file *file)
 	i = 2;
 	while (line[i] == ' ')
 		i++;
+	if (line[i] == '\0')
+		return (ERROR);
 	cpt = 0;
 	deb = i;
 	while (line[i] != '\0' && line[i] != ' ')
@@ -82,6 +86,8 @@ int	west(char *line, t_file *file)
 	i = 2;
 	while (line[i] == ' ')
 		i++;
+	if (line[i] == '\0')
+		return (ERROR);
 	cpt = 0;
 	deb = i;
 	while (line[i] != '\0' && line[i] != ' ')
@@ -111,6 +117,8 @@ int	east(char *line, t_file *file)
 	i = 2;
 	while (line[i] == ' ')
 		i++;
+	if (line[i] == '\0')
+		return (ERROR);
 	cpt = 0;
 	deb = i;
 	while (line[i] != '\0' && line[i] != ' ')

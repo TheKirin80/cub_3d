@@ -6,42 +6,11 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 02:16:16 by akefeder          #+#    #+#             */
-/*   Updated: 2023/02/21 01:06:09 by akefeder         ###   ########.fr       */
+/*   Updated: 2023/03/22 20:57:36 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub_3d.h"
-
-// void	affichage(t_file *file, int i)
-// {
-// 	if (i == 1)
-// 	{
-// 		ft_putstr_fd("Votre nombre de mouvement est de : ", 1);
-// 		ft_putnbr(file->nbr_coup);
-// 		ft_putstr_fd("\n", 1);
-// 	}
-// 	else
-// 	{
-// 		ft_putstr_fd("Votre nombre de final de mouvement est de : ", 1);
-// 		ft_putnbr(file->nbr_coup);
-// 		ft_putstr_fd("\n", 1);
-// 	}
-// }
-
-// int	verif_map(t_map *map)
-// {
-// 	map->len = ft_strlen(map->map[0]);
-// 	map->maplen = ft_maplen(map->map);
-// 	if (verif_square(map) == ERROR)
-// 		return (ERROR);
-// 	if (verif_haut_bas(map) == ERROR)
-// 		return (ERROR);
-// 	if (verif_gauche_droite(map) == ERROR)
-// 		return (ERROR);
-// 	if (verif_composant(map) == ERROR)
-// 		return (ERROR);
-// 	return (OK);
-// }
 
 int	is_present(char src, char *src_verif)
 {
@@ -55,6 +24,30 @@ int	is_present(char src, char *src_verif)
 		i++;
 	}
 	return (ERROR);
+}
+
+int	filter_char(char *src, char *filter)
+{
+	int	i;
+	int j;
+	int find;
+
+	i = 0;
+	find = 0;
+	while (src[i] != '\0')
+	{
+		j = 0;
+		while (filter[j] != '\0' && find == 0)
+		{
+			if (src[i] == filter[j])
+				find = 1;
+			j++;
+		}
+		if (find == 0)
+			return (ERROR);
+		i++;
+	}
+	return (OK);
 }
 
 int	is_num(char src)

@@ -1,96 +1,74 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map.c                                              :+:      :+:    :+:   */
+/*   old_map.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 18:47:53 by akefeder          #+#    #+#             */
-/*   Updated: 2023/01/27 18:58:37 by akefeder         ###   ########.fr       */
+/*   Updated: 2023/03/22 20:57:49 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub_3d.h"
 
-void	prepa_map(t_map *map)
+void	prepa_map(t_file *file)
 {
-	map->map = NULL;
-	map->orient_find = 0;
-	map->orient = 'R';
-	map->len = 0;
-	map->maplen = 0;
+	file->map->map = NULL;
+	file->map->orient_find = 0;
+	file->map->orient = 'R';
+	file->map->len = 0;
+	file->map->maplen = 0;
 }
 
-void	add_map_help(t_map *map, char *line, char **save)
+void	add_map_help(t_file *file, char *line, char **save)
 {
 	int	i;
 
 	i = 0;
-	while (map->map[i] != NULL)
+	while (file->map->map[i] != NULL)
 	{
-		save[i] = map->map[i];
+		save[i] = file->map->map[i];
 		i++;
 	}
 	save[i] = line;
 	save[i + 1] = NULL;
 }
 
-int	add_map(t_map *map, char *line)
+int	add_map(t_file *file, int i)
 {
 	char	**save;
 	int		len;
 
-	len = ft_maplen(map->map);
+	len = ft_maplen(file->map->map);
 	save = malloc((len + 2) * sizeof(char *));
 	if (save == NULL)
-	{
-		free(line);
 		return (ERROR);
-	}
 	if (len == 0)
 	{
-		save[0] = line;
+		save[0] = file->tmp[i];
 		save[1] = NULL;
 	}
 	else
-		add_map_help(map, line, save);
-	free(map->map);
-	map->map = save;
+		add_map_help(file, file->tmp[i], save);
+	if (file->map->map)
+		free(file->map->map);
+	file->map->map = save;
 	return (OK);
 }
 
-int	rempli_map_help(int *fd, char *av)
+int	rempli_map(t_file *file, int i)
 {
-	*fd = open(av, O_RDONLY);
-	if (*fd == -1)
+	file->map = malloc(1 * sizeof(t_map));
+	if (file->map == NULL)
 		return (ERROR);
-	return (OK);
-}
-
-int	rempli_map(char *av, t_map *map)
-{
-	int		fd;
-	char	*line;
-	int		ret;
-
-	if (rempli_map_help(&fd, av) == ERROR)
-		return (ERROR);
-	line = NULL;
-	ret = get_next_line(fd, &line, 0);
-	while (ret > 0)
+	prepa_map(file);
+	while (file->tmp[i] != NULL)
 	{
-		if (add_map(map, line) == ERROR)
-			return (close(fd), ERROR);
-		line = NULL;
-		ret = get_next_line(fd, &line, 0);
-	}
-	get_next_line(fd, &line, 1);
-	close(fd);
-	if (ret == -1)
-		return (ERROR);
-	else
-		if (add_map(map, line) == ERROR)
+		if (filter_char(file->tmp[i], "01 NSWE") == ERROR || add_map(file, i) == ERROR)
 			return (ERROR);
-	line = NULL;
+		i++;
+	}
+	print_tab(file->map->map, "rempli map");
 	return (OK);
 }

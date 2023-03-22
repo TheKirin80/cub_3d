@@ -6,7 +6,7 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 15:28:43 by akefeder          #+#    #+#             */
-/*   Updated: 2023/02/21 00:20:47 by akefeder         ###   ########.fr       */
+/*   Updated: 2023/03/22 21:02:27 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,10 +89,6 @@ int		is_printable(char c);
 int		check_carac(char buf[BUFFER_SIZE + 1]);
 // --------------- tmp.c  ---------------
 int		rempli_tmp(char *av, t_file *file);
-// --------------- map.c  ---------------
-void	prepa_map(t_map *map);
-int		add_map(t_map *map, char *line);
-int		rempli_map(char *av, t_map *map);
 // --------------- param_verif_map.c  ---------------
 int		verif_carac(t_map *map, char c);
 int		verif_composant(t_map *map);
@@ -107,6 +103,7 @@ void	ft_putnbr(int i);
 int		is_present(char src, char *src_verif);
 int		is_num(char src);
 int		ft_atoi_color(char *color);
+int		filter_char(char *src, char *filter);
 // --------------- tool3.c  ---------------
 void	rempli_zero(int *tab, int size);
 // --------------- error.c  ---------------
@@ -143,8 +140,10 @@ int		already_up(char c, t_file *file);
 void	free_tmp(char **tmp);
 // --------------- printer.c  ---------------
 void	print_part_tab(char *tab, int deb);
-void	print_tab(char **tab);
-void	print_file(t_file *file);
+void	print_tab(char **tab, char *msg);
+void	print_file(t_file *file, char *descriptor);
 // --------------- parsing.c  ---------------
 int		parsing(char *path_to_file, t_file *file);
+// --------------- old_map.c  ---------------
+int		rempli_map(t_file *file, int i);
 #endif

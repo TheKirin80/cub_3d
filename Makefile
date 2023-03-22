@@ -13,6 +13,7 @@ PARS_FILES	=	check_line.c\
 				printer.c\
 				parsing.c\
 				tmp.c\
+				old_map.c\
 				tool.c\
 				tool2.c\
 				tool3.c	

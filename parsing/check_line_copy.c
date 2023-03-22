@@ -6,7 +6,7 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 19:26:46 by akefeder          #+#    #+#             */
-/*   Updated: 2023/02/21 01:05:09 by akefeder         ###   ########.fr       */
+/*   Updated: 2023/03/14 17:55:11 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int		ft_rempli_ret(int *ret, int *list_cpt, char *color)
 	stock = 0;
 	color[list_cpt[1]] = '\0';
 	stock = ft_atoi_color(color);
-	printf("color : |%s|\tstock : %i\n", color, stock);
+	printf("color : |%s|\tstock : %i\tret : %i\n", color, stock, *ret);
 	if (stock == ERROR)
 		return (ERROR);
 	*ret = *ret + stock;
@@ -92,7 +92,7 @@ int		ft_i_cpt_intcopy(char *line, int deb, int cpt)
 {
 	int	list_cpt[3];
 	int	ret;
-	char color[4];
+	char color[13];
 	
 	ret = 0;
 	rempli_zero(list_cpt, 3);
@@ -116,44 +116,3 @@ int		ft_i_cpt_intcopy(char *line, int deb, int cpt)
 				return (ERROR);
 	return (ret);
 }
-// int		ft_i_cpt_intcopy(char *line, int deb, int cpt)
-// {
-// 	int	list_cpt[3];
-// 	int	ret;
-// 	char color[4];
-// 	int stock;
-	
-// 	ret = 0;
-// 	list_cpt[0] = 0;
-// 	list_cpt[1] = 0;
-// 	list_cpt[2] = 0;
-// 	if (check_etat(line, deb, cpt) == ERROR)
-// 		return (ERROR);
-// 	print_part_tab(line, deb);
-// 	printf("cpt = %i\n", cpt);
-// 	while (list_cpt[0] < cpt)
-// 	{
-// 		if (line[deb + list_cpt[0]] == ',')
-// 		{
-// 			color[list_cpt[1]] = '\0';
-// 			stock = ft_atoi_color(color);
-// 			printf("color : |%s|\tstock : %i\n", color, stock);
-// 			if (stock == ERROR)
-// 				return (ERROR);
-// 			ret = ret + stock;
-// 			if (list_cpt[2] < 2)
-// 				ret = ret << 8;
-// 			list_cpt[1] = 0;
-// 			list_cpt[2] = list_cpt[2] + 1;
-// 		}
-// 		else
-// 		{
-// 			color[list_cpt[1]] = line[deb + list_cpt[0]];
-// 			list_cpt[1] = list_cpt[1] + 1;
-			
-// 		}
-// 		list_cpt[0] = list_cpt[0] + 1;
-// 	}
-	
-// 	return (ret + stock);
-// }
