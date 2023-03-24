@@ -6,7 +6,7 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 15:28:43 by akefeder          #+#    #+#             */
-/*   Updated: 2023/03/24 05:40:20 by akefeder         ###   ########.fr       */
+/*   Updated: 2023/03/24 07:33:21 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@
 # define CARACT_OK "01NOSEAW\n "
 
 typedef struct s_map	t_map;
+typedef struct s_img	t_img;
 typedef struct s_file	t_file;
 typedef struct s_lect	t_lect;
 
@@ -50,6 +51,13 @@ struct s_map
 	char	orient;
 	int		len;
 	int		maplen;
+};
+
+struct s_img
+{
+	void	*img;
+	int		img_width;
+	int		img_height;
 };
 
 struct s_file
@@ -66,9 +74,13 @@ struct s_file
 	int		F;
 	int		C;
 	char	*north;
+	t_img	img_north;
 	char	*south;
+	t_img	img_south;
 	char	*west;
+	t_img	img_west;
 	char	*east;
+	t_img	img_east;
 	int		full;
 	char	**tmp;
 };

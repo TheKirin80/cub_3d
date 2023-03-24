@@ -6,41 +6,39 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 17:34:09 by akefeder          #+#    #+#             */
-/*   Updated: 2023/02/20 01:23:13 by akefeder         ###   ########.fr       */
+/*   Updated: 2023/03/24 08:38:49 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub_3d.h"
 
-// int	load_img(t_file *file)
-// {
-// 	int		iw;
-// 	int		ih;
+int	load_img(t_file *file)
+{
+    
+	file->img_north->img = mlx_xpm_file_to_image(file->mlx, file->north
+        , &file->img_north->img_width, &file->img_north->img_height);
+	file->img_south->img = mlx_xpm_file_to_image(file->mlx, file->south
+        , &file->img_south->img->img_width, &file->img_south->img_height);
+	file->img_west->img = mlx_xpm_file_to_image(file->mlx, file->west
+        , &file->img_west->img->img_width, &file->img_west->img_height);
+    file->img_east->img = mlx_xpm_file_to_image(file->mlx, file->east
+        , &file->img_east->img->img_width, &file->img_east->img_height);
+	if (!file->img_north || !file->img_south || !file->img_west || !file->east)
+		return (ERROR);
+	return (OK);
+}
 
-// 	iw = SIZEPIC;
-// 	ih = SIZEPIC;
-// 	file->bord = mlx_xpm_file_to_image(file->mlx, "./img/bord.xpm", &iw, &ih);
-// 	file->fond = mlx_xpm_file_to_image(file->mlx, "./img/fond.xpm", &iw, &ih);
-// 	file->col = mlx_xpm_file_to_image(file->mlx, "./img/col.xpm", &iw, &ih);
-// 	file->exit = mlx_xpm_file_to_image(file->mlx, "./img/exit.xpm", &iw, &ih);
-// 	file->play = mlx_xpm_file_to_image(file->mlx, "./img/play.xpm", &iw, &ih);
-// 	if (!file->bord || !file->fond || !file->col || !file->exit || !file->play)
-// 		return (ERROR);
-// 	return (OK);
-// }
-
-// int	charg_file(t_file *file)
-// {
-// 	file->mlx = mlx_init();
-// 	if (!file->mlx)
-// 		return (ERROR);
-// 	file->win = mlx_new_window(file->mlx, file->map->len * SIZEPIC,
-// 			file->map->maplen * SIZEPIC, "cub_3d");
-// 	if (!file->win)
-// 		return (ERROR);
-// 	file->nbr_coup = 0;
-// 	if (load_img(file) == ERROR)
-// 		return (ERROR);
-// 	return (OK);
-// }
+int	charg_file(t_file *file)
+{
+	file->mlx = mlx_init();
+	if (!file->mlx)
+		return (ERROR);
+	// file->win = mlx_new_window(file->mlx, file->map->len * SIZEPIC,
+	// 		file->map->maplen * SIZEPIC, "cub_3d");
+	// if (!file->win)
+	// 	return (ERROR);
+	if (load_img(file) == ERROR)
+		return (ERROR);
+	return (OK);
+}
 
