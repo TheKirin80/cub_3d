@@ -6,7 +6,7 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 15:28:43 by akefeder          #+#    #+#             */
-/*   Updated: 2023/03/22 21:02:27 by akefeder         ###   ########.fr       */
+/*   Updated: 2023/03/24 05:40:20 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,8 +104,10 @@ int		is_present(char src, char *src_verif);
 int		is_num(char src);
 int		ft_atoi_color(char *color);
 int		filter_char(char *src, char *filter);
+char	*ft_strcopy(char *src);
 // --------------- tool3.c  ---------------
 void	rempli_zero(int *tab, int size);
+char	is_present_char(char src, char *src_verif);
 // --------------- error.c  ---------------
 int		gest_error(int code, t_file *file);
 // --------------- file.c  ---------------
@@ -146,4 +148,11 @@ void	print_file(t_file *file, char *descriptor);
 int		parsing(char *path_to_file, t_file *file);
 // --------------- old_map.c  ---------------
 int		rempli_map(t_file *file, int i);
+// --------------- verif_map.c  ---------------
+int		verif_single_pos(t_file *file);
+int		modif_for_traitment(t_file *file, int i);
+int		verif_map(t_file *file);
+// --------------- verif_map_tool_1.c  ---------------
+void	sizing_map(t_file *file);
+void	change_two_occurence(t_file *file);
 #endif

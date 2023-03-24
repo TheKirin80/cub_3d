@@ -6,7 +6,7 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 03:59:01 by akefeder          #+#    #+#             */
-/*   Updated: 2023/03/22 21:06:28 by akefeder         ###   ########.fr       */
+/*   Updated: 2023/03/24 05:29:40 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ void	free_map(t_file *file)
 	{
 		while (file->map->map[i] != NULL)
 		{
+			//printf("file map : %s\t\t\ti : %i\n", file->map->map[i], i);
 			free(file->map->map[i]);
 			i++;
 		}

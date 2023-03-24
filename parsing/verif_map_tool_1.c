@@ -1,39 +1,49 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tool3.c                                            :+:      :+:    :+:   */
+/*   verif_map_tool_1.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/21 00:18:08 by akefeder          #+#    #+#             */
-/*   Updated: 2023/03/24 01:11:31 by akefeder         ###   ########.fr       */
+/*   Created: 2023/03/24 04:04:38 by akefeder          #+#    #+#             */
+/*   Updated: 2023/03/24 05:40:57 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub_3d.h"
 
-void	rempli_zero(int *tab, int size)
+void	sizing_map(t_file *file)
 {
 	int	i;
+	int res;
 
 	i = 0;
-	while (i < size)
+	while (file->map->map[i] != NULL)
 	{
-		tab[i] = 0;
+		res = ft_strlen(file->map->map[i]);
+		if (res > file->map->len)
+			file->map->len = res;
 		i++;
 	}
+	file->map->maplen = i;
 }
 
-char	is_present_char(char src, char *src_verif)
+void	change_two_occurence(t_file *file)
 {
 	int	i;
+	int	j;
 
 	i = 0;
-	while (src_verif[i] != '\0')
+	while (file->map->map[i] != NULL)
 	{
-		if (src_verif[i] == src)
-			return (src_verif[i]);
+		j = 0;
+		while (file->map->map[i][j] != '\0')
+		{
+			if (file->map->map[i][j] == '2')
+				file->map->map[i][j] = '1';
+			j++;
+		}
 		i++;
 	}
-	return ('F');
+	//print_tab(file->map->map, "map after verif");
 }

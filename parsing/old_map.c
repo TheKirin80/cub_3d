@@ -6,7 +6,7 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 18:47:53 by akefeder          #+#    #+#             */
-/*   Updated: 2023/03/22 20:57:49 by akefeder         ###   ########.fr       */
+/*   Updated: 2023/03/24 05:28:29 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	prepa_map(t_file *file)
 	file->map->maplen = 0;
 }
 
-void	add_map_help(t_file *file, char *line, char **save)
+int	add_map_help(t_file *file, char *line, char **save)
 {
 	int	i;
 
@@ -31,8 +31,11 @@ void	add_map_help(t_file *file, char *line, char **save)
 		save[i] = file->map->map[i];
 		i++;
 	}
-	save[i] = line;
+	save[i] = ft_strcopy(line);
+	if (save[i] == NULL)
+		return (ERROR);
 	save[i + 1] = NULL;
+	return (OK);
 }
 
 int	add_map(t_file *file, int i)
@@ -46,11 +49,14 @@ int	add_map(t_file *file, int i)
 		return (ERROR);
 	if (len == 0)
 	{
-		save[0] = file->tmp[i];
+		save[0] = ft_strcopy(file->tmp[i]);
+		if (save[0] == NULL)
+			return (ERROR);
 		save[1] = NULL;
 	}
 	else
-		add_map_help(file, file->tmp[i], save);
+		if (add_map_help(file, file->tmp[i], save) == ERROR)
+			return (free_tmp(save), ERROR);
 	if (file->map->map)
 		free(file->map->map);
 	file->map->map = save;
@@ -69,6 +75,6 @@ int	rempli_map(t_file *file, int i)
 			return (ERROR);
 		i++;
 	}
-	print_tab(file->map->map, "rempli map");
+	//print_tab(file->map->map, "rempli map");
 	return (OK);
 }

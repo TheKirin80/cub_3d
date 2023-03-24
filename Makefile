@@ -14,6 +14,8 @@ PARS_FILES	=	check_line.c\
 				parsing.c\
 				tmp.c\
 				old_map.c\
+				verif_map.c\
+				verif_map_tool_1.c\
 				tool.c\
 				tool2.c\
 				tool3.c	

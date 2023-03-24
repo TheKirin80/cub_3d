@@ -6,7 +6,7 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 02:16:16 by akefeder          #+#    #+#             */
-/*   Updated: 2023/03/22 20:57:36 by akefeder         ###   ########.fr       */
+/*   Updated: 2023/03/23 00:11:25 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,4 +72,24 @@ int ft_atoi_color(char *color)
 		i++;
  	}
 	return (ret);
+}
+
+char	*ft_strcopy(char *src)
+{
+	int	i;
+	char	*cpy;
+	
+	if (src == NULL)
+		return (NULL);
+	cpy = malloc((ft_strlen(src) + 1) * sizeof(char));
+	if (cpy == NULL)
+		return (NULL);
+	i = 0;
+	while(src[i] != '\0')
+	{
+		cpy[i] = src[i];
+		i++;
+	}
+	cpy[i] = '\0';
+	return (cpy);
 }
