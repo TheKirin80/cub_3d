@@ -6,7 +6,7 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 15:28:43 by akefeder          #+#    #+#             */
-/*   Updated: 2023/10/18 20:36:16 by akefeder         ###   ########.fr       */
+/*   Updated: 2023/10/18 20:49:54 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ struct s_file
 	int		full;
 	char	**tmp;
 	t_img	img_minimap;
-	t_player	player;
+	t_player	*player;
 };
 
 struct	s_lect

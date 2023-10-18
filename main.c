@@ -6,7 +6,7 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 15:28:58 by akefeder          #+#    #+#             */
-/*   Updated: 2023/10/17 22:35:44 by akefeder         ###   ########.fr       */
+/*   Updated: 2023/10/18 21:18:41 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,3 +59,6 @@ int	main(int ac, char **av)
 	mlx_loop(file.mlx);
 	return (0);
 }
+
+
+//penser a free le player

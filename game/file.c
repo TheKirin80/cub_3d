@@ -6,7 +6,7 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 17:34:09 by akefeder          #+#    #+#             */
-/*   Updated: 2023/10/18 20:37:16 by akefeder         ###   ########.fr       */
+/*   Updated: 2023/10/18 21:29:05 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,17 +94,18 @@ int	load_img(t_file *file)
 			file->map->maplen * SIZEPIC_HEIGHT);
 	file->img_minimap.addr = mlx_get_data_addr(file->img_minimap.img,&(file->img_minimap.bpp),
 			&(file->img_minimap.line_length), &(file->img_minimap.endian));
-	//my_mlx_pixel_put(&(file->img_minimap), 10, 10, 0x00FF0000);//affichage d'un pixel
-	draw_map(file);
-	//draw_square(file, file->player.posx, file->player.posy, 10, 0x00FF0000);
+	//my_mlx_pixel_put(&(file->img_minimap), 10, 10, 0x00FF0000);//affichage d'un pixel	
 	return (OK);
 }
-int	charg_player(t_file *file, char orient, int i, int j)
+t_player	*charg_player(char orient, int i, int j)
 {
-	file->player.orient = orient;
-	file->player.posx = j * SIZEPIC_HEIGHT;
-	file->player.posy = i * SIZEPIC_WIDTH;
-	return (1);
+	t_player *player;
+
+	player = malloc(sizeof(t_player));
+	player->orient = orient;
+	player->posx = j * SIZEPIC_HEIGHT;
+	player->posy = i * SIZEPIC_WIDTH;
+	return (player);
 }
 void	init_player(t_file *file)
 {
@@ -121,11 +122,13 @@ void	init_player(t_file *file)
 		{
 			if (file->map->map[i][j] != '1' && file->map->map[i][j] != '0')
 			{
-				find = charg_player(file, file->map->map[i][j], i, j);
+				file->player = charg_player(file->map->map[i][j], i, j);
 				file->map->map[i][j] = '0';
+				find = 1;
 			}
+			j++;
 		}
-		j++;
+		i++;
 	}
 }
 
@@ -138,7 +141,8 @@ int	charg_file(t_file *file)
 			file->map->maplen * SIZEPIC_HEIGHT, "cub_3d");
 	if (!file->win)
 		return (ERROR);
-	//init_player(file);
+	init_player(file);
+	print_tab(file->map->map, "Dans le charg file");
 	if (load_img(file) == ERROR)
 		return (ERROR);
 	return (OK);
@@ -178,5 +182,7 @@ int	charg_file(t_file *file)
 // }
 void	affiche_map(t_file *file)
 {
+	draw_map(file);
+	draw_square(file, file->player->posx, file->player->posy, 10, 0x00FF0000);
 	mlx_put_image_to_window(file->mlx, file->win, file->img_minimap.img, 0, 0);
 }
