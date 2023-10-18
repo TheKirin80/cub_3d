@@ -6,7 +6,7 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 23:01:40 by akefeder          #+#    #+#             */
-/*   Updated: 2023/03/23 22:27:41 by akefeder         ###   ########.fr       */
+/*   Updated: 2023/03/25 00:00:19 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ int	check_background(t_file *file)
 		return (ERROR);
 	if (verif_map(file) == ERROR)
 		return (ERROR);
-	print_tab(file->map->map, " check map");
+	//print_tab(file->map->map, " check map");
 	return (OK);
 }
 

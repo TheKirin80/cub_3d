@@ -6,7 +6,7 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 19:26:46 by akefeder          #+#    #+#             */
-/*   Updated: 2023/03/14 17:55:11 by akefeder         ###   ########.fr       */
+/*   Updated: 2023/03/24 23:59:49 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int		ft_rempli_ret(int *ret, int *list_cpt, char *color)
 	stock = 0;
 	color[list_cpt[1]] = '\0';
 	stock = ft_atoi_color(color);
-	printf("color : |%s|\tstock : %i\tret : %i\n", color, stock, *ret);
+	//printf("color : |%s|\tstock : %i\tret : %i\n", color, stock, *ret);
 	if (stock == ERROR)
 		return (ERROR);
 	*ret = *ret + stock;

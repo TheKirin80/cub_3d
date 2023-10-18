@@ -6,7 +6,7 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 00:22:54 by akefeder          #+#    #+#             */
-/*   Updated: 2023/03/22 21:03:33 by akefeder         ###   ########.fr       */
+/*   Updated: 2023/03/25 00:03:49 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ void	print_tab(char **tab, char *msg)
 
 void	print_file(t_file *file, char *descriptor)
 {
-	printf("\t\t\t\t\t\t\t---------------------------\n");
-	print_tab(file->tmp, descriptor);
+	printf("-------%s--------------------\n", descriptor);
+	print_tab(file->map->map, "map");
 	printf("north : %s\n", file->north);
 	printf("south : %s\n", file->south);
 	printf("east : %s\n", file->east);
@@ -51,6 +51,6 @@ void	print_file(t_file *file, char *descriptor)
 	printf("F : %i\n", file->F);
 	printf("C : %i\n", file->C);
 	printf("full : %i\n", file->full);
-	printf("\t\t\t\t\t\t\t---------------------------\n");
+	printf("--------%s------------------\n",descriptor);
 	
 }

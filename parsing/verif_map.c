@@ -6,7 +6,7 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 23:42:52 by akefeder          #+#    #+#             */
-/*   Updated: 2023/03/24 05:38:16 by akefeder         ###   ########.fr       */
+/*   Updated: 2023/03/25 00:14:09 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int	modif_for_traitment(t_file *file, int i)
 
 int verif_encaps_zero(t_file *file, int x, int y)
 {
-	printf("X : %i\tY : %i\tValue : |%c|\n", x, y, file->map->map[x][y]);
+	//printf("X : %i\tY : %i\tValue : |%c|\n", x, y, file->map->map[x][y]);
 	if (x == 0 || x == file->map->maplen - 1)
 		return (ERROR);
 	if (y == 0 || y == file->map->len - 1)
@@ -104,10 +104,12 @@ int	verif_all_close(t_file *file)
 	return (OK);
 }
 
+//faire une fonction pour checker si tout les caractere de la map sont bon 
 
 int	verif_map(t_file *file)
 {
 	int	i;
+	//la faire ici 
 	if (verif_single_pos(file) == ERROR)
 		return (ERROR);
 	sizing_map(file);

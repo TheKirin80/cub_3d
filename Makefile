@@ -19,7 +19,8 @@ PARS_FILES	=	check_line.c\
 				tool.c\
 				tool2.c\
 				tool3.c	
-GAME_FILES	=	file.c			
+GAME_FILES	=	file.c\
+				moove.c			
 GARB_FILES	=	error.c\
 				free.c\
 				gest_close.c
@@ -43,7 +44,7 @@ CC 		= clang
 
 RM 		= rm -f
 
-CFLAGS	= -Wall -Wextra -Werror -g3 #-O3 #-fsanitize=address
+CFLAGS	= -Wall -Wextra -Werror -g3 -fsanitize=address,leak,undefined
 
 all:		${NAME}
 

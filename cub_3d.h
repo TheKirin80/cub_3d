@@ -6,7 +6,7 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 15:28:43 by akefeder          #+#    #+#             */
-/*   Updated: 2023/03/24 07:33:21 by akefeder         ###   ########.fr       */
+/*   Updated: 2023/10/18 20:36:16 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,10 @@
 # define FULL 1
 # define FIND 1
 # define CONTINUE 1
-# define SIZEPIC 36
+# define SIZEPIC_WIDTH 100
+# define SIZEPIC_HEIGHT 100
+# define ROTATE_LEFT	65361
+# define ROTATE_RIGHT	65363
 # define KEY_W 119
 # define KEY_S 115
 # define KEY_A 97
@@ -43,6 +46,8 @@ typedef struct s_map	t_map;
 typedef struct s_img	t_img;
 typedef struct s_file	t_file;
 typedef struct s_lect	t_lect;
+typedef struct s_pos	t_pos;
+typedef struct s_player	t_player;
 
 struct s_map
 {
@@ -56,8 +61,23 @@ struct s_map
 struct s_img
 {
 	void	*img;
-	int		img_width;
-	int		img_height;
+	char	*addr;
+	int		bpp;
+	int		line_length;
+	int		endian;
+};
+
+struct s_pos
+{
+	int	x;
+	int	y;
+};
+
+struct s_player
+{
+	int posx;
+	int posy;
+	char orient;
 };
 
 struct s_file
@@ -83,6 +103,8 @@ struct s_file
 	t_img	img_east;
 	int		full;
 	char	**tmp;
+	t_img	img_minimap;
+	t_player	player;
 };
 
 struct	s_lect
@@ -90,6 +112,7 @@ struct	s_lect
 	int		fd;
 	char	*tmp;
 };
+
 
 // --------------- get_next_line.c  ---------------
 int		get_next_line(int fd, char **line, int reset);
@@ -123,8 +146,11 @@ char	is_present_char(char src, char *src_verif);
 // --------------- error.c  ---------------
 int		gest_error(int code, t_file *file);
 // --------------- file.c  ---------------
-// int		load_img(t_file *file);
-// int		charg_file(t_file *file);
+int		load_img(t_file *file);
+int		charg_file(t_file *file);
+void	my_mlx_pixel_put(t_img *data, int x, int y, int color);
+//void	affiche_img(int i, int j, char obj, t_file *file);
+void	affiche_map(t_file *file);
 // --------------- gest_close.c  ---------------
 void	destroy_img(t_file *file);
 void	free_direction(t_file *file);
@@ -167,4 +193,7 @@ int		verif_map(t_file *file);
 // --------------- verif_map_tool_1.c  ---------------
 void	sizing_map(t_file *file);
 void	change_two_occurence(t_file *file);
+// --------------- moove.c  ---------------
+int	gest_moove(int keycode, t_file *file);
+
 #endif
