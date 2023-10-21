@@ -6,7 +6,7 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 15:28:58 by akefeder          #+#    #+#             */
-/*   Updated: 2023/10/18 21:18:41 by akefeder         ###   ########.fr       */
+/*   Updated: 2023/10/22 00:21:17 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,4 +61,4 @@ int	main(int ac, char **av)
 }
 
 
-//penser a free le player
+//penser a free le player , la ray

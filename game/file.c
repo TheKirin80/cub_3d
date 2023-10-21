@@ -6,7 +6,7 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 17:34:09 by akefeder          #+#    #+#             */
-/*   Updated: 2023/10/18 21:29:05 by akefeder         ###   ########.fr       */
+/*   Updated: 2023/10/21 23:13:41 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,47 +142,15 @@ int	charg_file(t_file *file)
 	if (!file->win)
 		return (ERROR);
 	init_player(file);
-	print_tab(file->map->map, "Dans le charg file");
+	//print_tab(file->map->map, "Dans le charg file");
 	if (load_img(file) == ERROR)
 		return (ERROR);
 	return (OK);
 }
 
-// void	affiche_img(int i, int j, char obj, t_file *file)
-// {
-// 	int		iw;
-// 	int		ih;
-
-// 	iw = SIZEPIC_WIDTH;
-// 	ih = SIZEPIC_HEIGHT;
-// 	if (obj == '1')
-// 		mlx_put_image_to_window(file->mlx, file->win, file->img_north.img,
-// 			j * ih, i * iw);
-// 	if (obj == '0')
-// 		mlx_put_image_to_window(file->mlx, file->win, file->img_south.img,
-// 			j * ih, i * iw);
-// }
-
-// void	affiche_map(t_file *file)
-// {
-// 	int	i;
-// 	int	j;
-
-// 	i = 0;
-// 	while (file->map->map[i] != NULL)
-// 	{
-// 		j = 0;
-// 		while (file->map->map[i][j] != '\0')
-// 		{
-// 			affiche_img(i, j, file->map->map[i][j], file);
-// 			j++;
-// 		}
-// 		i++;
-// 	}
-// }
 void	affiche_map(t_file *file)
 {
-	draw_map(file);
-	draw_square(file, file->player->posx, file->player->posy, 10, 0x00FF0000);
+	//draw_map(file);
+	//draw_square(file, file->player->posx, file->player->posy, 10, 0x00FF0000);
 	mlx_put_image_to_window(file->mlx, file->win, file->img_minimap.img, 0, 0);
 }

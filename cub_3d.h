@@ -6,7 +6,7 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 15:28:43 by akefeder          #+#    #+#             */
-/*   Updated: 2023/10/18 20:49:54 by akefeder         ###   ########.fr       */
+/*   Updated: 2023/10/22 00:08:58 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef struct s_file	t_file;
 typedef struct s_lect	t_lect;
 typedef struct s_pos	t_pos;
 typedef struct s_player	t_player;
+typedef struct s_ray	t_ray;
 
 struct s_map
 {
@@ -75,9 +76,28 @@ struct s_pos
 
 struct s_player
 {
-	int posx;
-	int posy;
+	double posx;
+	double posy;
+	int	mapx;
+	int	mapy;
+	double dirx;
+	double diry;
+	double planx;
+	double plany;
 	char orient;
+};
+
+struct	s_ray;
+{
+	double camerax;
+	double raydirx;
+	double raydiry;
+	double deltastepx;
+	double deltastepy;
+	double stepx;
+	double stepy;
+	double sidestepx;
+	double sidestepy;
 };
 
 struct s_file
