@@ -21,7 +21,8 @@ PARS_FILES	=	check_line.c\
 				tool3.c	
 GAME_FILES	=	file.c\
 				moove.c\
-				raycasting.c	
+				raycasting.c\
+				raycasting_init.c
 GARB_FILES	=	error.c\
 				free.c\
 				gest_close.c
@@ -45,7 +46,7 @@ CC 		= clang
 
 RM 		= rm -f
 
-CFLAGS	= -Wall -Wextra -Werror -g3 -fsanitize=address,leak,undefined
+CFLAGS	= -Wall -Wextra -Werror -g3 #-fsanitize=address,leak,undefined
 
 all:		${NAME}
 

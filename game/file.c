@@ -6,7 +6,7 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 17:34:09 by akefeder          #+#    #+#             */
-/*   Updated: 2023/10/22 13:56:48 by akefeder         ###   ########.fr       */
+/*   Updated: 2023/10/22 21:05:05 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,12 @@ void	my_mlx_pixel_put(t_img *data, int x, int y, int color)
 {
 	char	*dst;
 
-	dst = data->addr + (y * data->line_length + x * (data->bpp / 8));
-	*(unsigned int*)dst = color;
+	if (x < SIZEPIC_WIDTH && y < SIZEPIC_HEIGHT)
+	{
+		dst = data->addr + (y * data->line_length + x * (data->bpp / 8));
+		*(unsigned int*)dst = color;
+	}
+	
 }
 
 void	draw_square(t_file *file, int posx, int posy, int len, int color)
@@ -90,8 +94,8 @@ void draw_map(t_file *file)
 }
 int	load_img(t_file *file)
 {
-	file->img_minimap.img = mlx_new_image(file->mlx, file->map->len * SIZEPIC_WIDTH,
-			file->map->maplen * SIZEPIC_HEIGHT);
+	file->img_minimap.img = mlx_new_image(file->mlx, SIZEPIC_WIDTH,
+			SIZEPIC_HEIGHT);
 	file->img_minimap.addr = mlx_get_data_addr(file->img_minimap.img,&(file->img_minimap.bpp),
 			&(file->img_minimap.line_length), &(file->img_minimap.endian));
 	//my_mlx_pixel_put(&(file->img_minimap), 10, 10, 0x00FF0000);//affichage d'un pixel	
@@ -103,8 +107,8 @@ t_player	*charg_player(char orient, int i, int j)
 
 	player = malloc(sizeof(t_player));
 	player->orient = orient;
-	player->posx = j * SIZEPIC_WIDTH;
-	player->posy = i * SIZEPIC_HEIGHT;
+	player->posx = j + 0.5;
+	player->posy = i + 0.5;
 	return (player);
 }
 void	init_player(t_file *file)
@@ -123,6 +127,7 @@ void	init_player(t_file *file)
 			if (file->map->map[i][j] != '1' && file->map->map[i][j] != '0')
 			{
 				file->player = charg_player(file->map->map[i][j], i, j);
+				init_component(file);
 				file->map->map[i][j] = '0';
 				find = 1;
 			}
@@ -137,14 +142,14 @@ int	charg_file(t_file *file)
 	file->mlx = mlx_init();
 	if (!file->mlx)
 		return (ERROR);
-	file->win = mlx_new_window(file->mlx, file->map->len * SIZEPIC_WIDTH,
-			file->map->maplen * SIZEPIC_HEIGHT, "cub_3d");
+	file->win = mlx_new_window(file->mlx, SIZEPIC_WIDTH,
+			 SIZEPIC_HEIGHT, "cub_3d");
 	if (!file->win)
 		return (ERROR);
 	init_player(file);
-	//print_tab(file->map->map, "Dans le charg file");
 	if (load_img(file) == ERROR)
 		return (ERROR);
+	print_tab(file->map->map, "Dans le charg file");
 	raycasting(file);
 	return (OK);
 }

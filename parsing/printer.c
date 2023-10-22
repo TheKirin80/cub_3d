@@ -6,7 +6,7 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 00:22:54 by akefeder          #+#    #+#             */
-/*   Updated: 2023/03/25 00:03:49 by akefeder         ###   ########.fr       */
+/*   Updated: 2023/10/22 21:38:07 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,4 +53,29 @@ void	print_file(t_file *file, char *descriptor)
 	printf("full : %i\n", file->full);
 	printf("--------%s------------------\n",descriptor);
 	
+}
+
+void	print_ray(t_file *file, char *descriptor)
+{
+	printf("--------%s------------------\n",descriptor);
+	printf("posx : %f\n", file->player->posx);
+	printf("posy : %f\n", file->player->posy);
+	printf("mapx : %i\n", file->ray->mapx);
+	printf("mapy : %i\n", file->ray->mapy);
+	printf("camerax : %f\n", file->ray->camerax);
+	printf("raydirx : %f\n", file->ray->raydirx);
+	printf("raydiry : %f\n", file->ray->raydiry);
+	printf("deltastepx : %f\n", file->ray->deltastepx);
+	printf("deltastepy : %f\n", file->ray->deltastepy);
+	printf("stepx : %f\n", file->ray->stepx);
+	printf("stepy : %f\n", file->ray->stepy);
+	printf("sidestepx : %f\n", file->ray->sidestepx);
+	printf("sidestepy : %f\n", file->ray->sidestepy);
+	printf("hit : %i\n", file->ray->hit);
+	printf("side : %i\n", file->ray->side);
+	printf("perpwalldist : %f\n", file->ray->perpwalldist);
+	printf("heightline : %i\n", file->ray->heightline);
+	printf("drawstart : %i\n", file->ray->drawstart);
+	printf("drawend : %i\n", file->ray->drawend);
+	printf("--------%s------------------\n",descriptor);
 }
