@@ -6,7 +6,7 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 15:28:43 by akefeder          #+#    #+#             */
-/*   Updated: 2023/10/22 00:08:58 by akefeder         ###   ########.fr       */
+/*   Updated: 2023/10/22 14:05:06 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,9 @@
 # include <stdlib.h>
 # include <fcntl.h>
 # include <unistd.h>
-# include <mlx.h>
+# include "./mlx_linux/mlx.h"
 # include <X11/X.h>
+# include <math.h>
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 4
 # endif
@@ -78,8 +79,6 @@ struct s_player
 {
 	double posx;
 	double posy;
-	int	mapx;
-	int	mapy;
 	double dirx;
 	double diry;
 	double planx;
@@ -87,8 +86,10 @@ struct s_player
 	char orient;
 };
 
-struct	s_ray;
+struct	s_ray
 {
+	int	mapx;
+	int	mapy;
 	double camerax;
 	double raydirx;
 	double raydiry;
@@ -98,6 +99,12 @@ struct	s_ray;
 	double stepy;
 	double sidestepx;
 	double sidestepy;
+	int	hit;
+	int	side;
+	double perpwalldist;
+	int	heightline;
+	int drawstart;
+	int	drawend; 
 };
 
 struct s_file
@@ -125,6 +132,7 @@ struct s_file
 	char	**tmp;
 	t_img	img_minimap;
 	t_player	*player;
+	t_ray	*ray;
 };
 
 struct	s_lect
@@ -215,5 +223,6 @@ void	sizing_map(t_file *file);
 void	change_two_occurence(t_file *file);
 // --------------- moove.c  ---------------
 int	gest_moove(int keycode, t_file *file);
-
+// --------------- raycasting.c  ---------------
+void raycasting(t_file *file);
 #endif

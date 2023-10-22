@@ -20,7 +20,8 @@ PARS_FILES	=	check_line.c\
 				tool2.c\
 				tool3.c	
 GAME_FILES	=	file.c\
-				moove.c			
+				moove.c\
+				raycasting.c	
 GARB_FILES	=	error.c\
 				free.c\
 				gest_close.c

@@ -6,7 +6,7 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 17:34:09 by akefeder          #+#    #+#             */
-/*   Updated: 2023/10/21 23:13:41 by akefeder         ###   ########.fr       */
+/*   Updated: 2023/10/22 13:56:48 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,8 +103,8 @@ t_player	*charg_player(char orient, int i, int j)
 
 	player = malloc(sizeof(t_player));
 	player->orient = orient;
-	player->posx = j * SIZEPIC_HEIGHT;
-	player->posy = i * SIZEPIC_WIDTH;
+	player->posx = j * SIZEPIC_WIDTH;
+	player->posy = i * SIZEPIC_HEIGHT;
 	return (player);
 }
 void	init_player(t_file *file)
@@ -145,6 +145,7 @@ int	charg_file(t_file *file)
 	//print_tab(file->map->map, "Dans le charg file");
 	if (load_img(file) == ERROR)
 		return (ERROR);
+	raycasting(file);
 	return (OK);
 }
 

@@ -6,7 +6,7 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 15:28:58 by akefeder          #+#    #+#             */
-/*   Updated: 2023/10/22 00:21:17 by akefeder         ###   ########.fr       */
+/*   Updated: 2023/10/22 13:34:20 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	main(int ac, char **av)
 	//free_file(&file);
 	if (charg_file(&file) == ERROR)
 		return (gest_error(3, &file));
-	affiche_map(&file);
+	//affiche_map(&file);
 	mlx_hook(file.win, KeyPress, KeyPressMask, gest_moove, &file);
 	// mlx_hook(file.win, ClientMessage, LeaveWindowMask, gest_close, &file);
 	mlx_loop(file.mlx);
@@ -62,3 +62,4 @@ int	main(int ac, char **av)
 
 
 //penser a free le player , la ray
+//penser a fixer la taille de l'ecran et remplacer dans le programme pour eviter les overflows
