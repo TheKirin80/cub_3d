@@ -6,20 +6,20 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 22:23:25 by akefeder          #+#    #+#             */
-/*   Updated: 2023/10/23 12:55:18 by akefeder         ###   ########.fr       */
+/*   Updated: 2023/10/23 13:36:28 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub_3d.h"
 
-void	vec_rotate(float *x, float *y, float rad)
-{
-	float const	xc = *x;
-	float const	yc = *y;
+// void	vec_rotate(float *x, float *y, float rad)
+// {
+// 	float const	xc = *x;
+// 	float const	yc = *y;
 
-	*x = xc * cos(rad) - yc * sin(rad);
-	*y = xc * sin(rad) + yc * cos(rad);
-}
+// 	*x = xc * cos(rad) - yc * sin(rad);
+// 	*y = xc * sin(rad) + yc * cos(rad);
+// }
 
 
 
@@ -79,10 +79,10 @@ int	gest_moove(int keycode, t_file *file)
 	// if (keycode == KEY_ECHAP)
 	// 	//gest_close(file);
     //     printf("coole\n");
-	// if (keycode == ROTATE_LEFT)
-    //     printf("coolfg\n");
-	// if (keycode == ROTATE_RIGHT)
-    //     printf("coolfd\n");
+	if (keycode == ROTATE_LEFT)
+		rotate_left(file);
+	if (keycode == ROTATE_RIGHT)
+        rotate_right(file);
 	else
 		affiche_map(file);
 	return (0);

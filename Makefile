@@ -22,7 +22,8 @@ PARS_FILES	=	check_line.c\
 GAME_FILES	=	file.c\
 				moove.c\
 				raycasting.c\
-				raycasting_init.c
+				raycasting_init.c\
+				rotate.c
 GARB_FILES	=	error.c\
 				free.c\
 				gest_close.c

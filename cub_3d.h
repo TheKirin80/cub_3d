@@ -6,7 +6,7 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 15:28:43 by akefeder          #+#    #+#             */
-/*   Updated: 2023/10/23 12:49:13 by akefeder         ###   ########.fr       */
+/*   Updated: 2023/10/23 13:34:43 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -231,4 +231,7 @@ void raycasting(t_file *file);
 // --------------- raycasting_init.c  ---------------
 void	init_dir_plan(t_file *file);
 void	init_component(t_file *file);
+// --------------- rotate.c  ---------------
+void	rotate_right(t_file *file);
+void	rotate_left(t_file *file);
 #endif
