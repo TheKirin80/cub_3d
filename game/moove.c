@@ -6,17 +6,28 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 22:23:25 by akefeder          #+#    #+#             */
-/*   Updated: 2023/10/22 21:48:44 by akefeder         ###   ########.fr       */
+/*   Updated: 2023/10/23 12:55:18 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub_3d.h"
 
+void	vec_rotate(float *x, float *y, float rad)
+{
+	float const	xc = *x;
+	float const	yc = *y;
+
+	*x = xc * cos(rad) - yc * sin(rad);
+	*y = xc * sin(rad) + yc * cos(rad);
+}
+
+
+
 void up_moove(t_file *file)
 {
-	if (file->map->map[(int)(file->player->posy)][(int)(file->player->posx + file->player->dirx * file->player->moovespeed * 2)] != '1')
+	if (file->map->map[(int)(file->player->posy)][(int)(file->player->posx + file->player->dirx * file->player->moovespeed * 2.0)] != '1')
 		file->player->posx = file->player->posx + file->player->dirx * file->player->moovespeed;
-	if (file->map->map[(int)(file->player->posy + file->player->diry * file->player->moovespeed * 2)][(int)(file->player->posx)] != '1')
+	if (file->map->map[(int)(file->player->posy + file->player->diry * file->player->moovespeed * 2.0)][(int)(file->player->posx)] != '1')
 		file->player->posy = file->player->posy + file->player->diry * file->player->moovespeed;
 	printf("posx = %f, posy = %f\n", file->player->posx, file->player->posy);
 	raycasting(file);
@@ -24,9 +35,9 @@ void up_moove(t_file *file)
 
 void down_moove(t_file *file)
 {
-	if (file->map->map[(int)(file->player->posy)][(int)(file->player->posx - file->player->dirx * file->player->moovespeed * 2)] != '1')
+	if (file->map->map[(int)(file->player->posy)][(int)(file->player->posx - file->player->dirx * file->player->moovespeed * 2.0)] != '1')
 		file->player->posx = file->player->posx - file->player->dirx * file->player->moovespeed;
-	if (file->map->map[(int)(file->player->posy - file->player->diry * file->player->moovespeed * 2)][(int)(file->player->posx)] != '1')
+	if (file->map->map[(int)(file->player->posy - file->player->diry * file->player->moovespeed * 2.0)][(int)(file->player->posx)] != '1')
 		file->player->posy = file->player->posy - file->player->diry * file->player->moovespeed;
 	printf("posx = %f, posy = %f\n", file->player->posx, file->player->posy);
 	raycasting(file);
@@ -34,9 +45,9 @@ void down_moove(t_file *file)
 
 void right_moove(t_file *file)
 {
-	if (file->map->map[(int)(file->player->posy)][(int)(file->player->posx - file->player->diry * file->player->moovespeed * 2)] != '1')
+	if (file->map->map[(int)(file->player->posy)][(int)(file->player->posx - file->player->diry * file->player->moovespeed * 2.0)] != '1')
 		file->player->posx = file->player->posx - file->player->diry * file->player->moovespeed;
-	if (file->map->map[(int)(file->player->posy + file->player->dirx * file->player->moovespeed * 2)][(int)(file->player->posx)] != '1')
+	if (file->map->map[(int)(file->player->posy + file->player->dirx * file->player->moovespeed * 2.0)][(int)(file->player->posx)] != '1')
 		file->player->posy = file->player->posy + file->player->dirx * file->player->moovespeed;
 	printf("posx = %f, posy = %f\n", file->player->posx, file->player->posy);
 	raycasting(file);
@@ -44,9 +55,9 @@ void right_moove(t_file *file)
 
 void left_moove(t_file *file)
 {
-	if (file->map->map[(int)(file->player->posy)][(int)(file->player->posx + file->player->diry * file->player->moovespeed * 2 )] != '1')
+	if (file->map->map[(int)(file->player->posy)][(int)(file->player->posx + file->player->diry * file->player->moovespeed * 2.0 )] != '1')
 		file->player->posx = file->player->posx + file->player->diry * file->player->moovespeed;
-	if (file->map->map[(int)(file->player->posy - file->player->dirx * file->player->moovespeed * 2)][(int)(file->player->posx)] != '1')
+	if (file->map->map[(int)(file->player->posy - file->player->dirx * file->player->moovespeed * 2.0)][(int)(file->player->posx)] != '1')
 		file->player->posy = file->player->posy - file->player->dirx * file->player->moovespeed;
 	printf("posx = %f, posy = %f\n", file->player->posx, file->player->posy);
 	raycasting(file);

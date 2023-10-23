@@ -6,7 +6,7 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 22:53:41 by akefeder          #+#    #+#             */
-/*   Updated: 2023/10/22 21:55:42 by akefeder         ###   ########.fr       */
+/*   Updated: 2023/10/23 13:02:48 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,10 @@ t_ray	*init_ray(t_file *file)
 	ray = malloc (1 * sizeof(t_ray));
 	if (!ray)
 		return(NULL);
+	ray->mapx = 0;
 	ray->mapx = (int)(file->player->posx);
-    ray->mapy = (int)(file->player->posy);
+    ray->mapy = 0;
+	ray->mapy = (int)(file->player->posy);
 	ray->camerax = 0;
 	ray->raydirx = 0;
 	ray->deltastepx = 0;
@@ -113,14 +115,16 @@ void	calc_drawtool(t_file *file)
 	else
 		//file->ray->perpwalldist = (file->ray->mapy - file->player->posy + (1 - file->ray->stepy) / 2) / file->ray->raydiry;
 		file->ray->perpwalldist = file->ray->sidestepy - file->ray->deltastepy;
-	file->ray->heightline = (int)((SIZEPIC_HEIGHT) / file->ray->perpwalldist)
-	file->ray->drawstart = (-1 * file->ray->heightline) / 2 + (SIZEPIC_HEIGHT) / 2;
-	//print_ray(file, "cherche ERREUR");
+	if (file->ray->perpwalldist > 0.001f)
+		file->ray->heightline = (int)((SIZEPIC_HEIGHT) / file->ray->perpwalldist);
+	else
+		file->ray->heightline = (int)((SIZEPIC_HEIGHT) / 0.01f);
+	file->ray->drawstart = SIZEPIC_HEIGHT / 2 - file->ray->heightline / 2;
+	file->ray->drawend =  file->ray->drawstart + file->ray->heightline;
 	if (file->ray->drawstart < 0)
 		file->ray->drawstart = 0;
-	file->ray->drawend =  (file->ray->heightline) / 2 + (SIZEPIC_HEIGHT) / 2;
-	if (file->ray->drawend >= (SIZEPIC_HEIGHT))
-		file->ray->drawend = (SIZEPIC_HEIGHT) - 1;
+	if (file->ray->drawend >= SIZEPIC_HEIGHT)
+		file->ray->drawend = SIZEPIC_HEIGHT;
 }
 
 void	draw_verticale_line(t_file *file, double x)
@@ -128,21 +132,21 @@ void	draw_verticale_line(t_file *file, double x)
 	int	i;
 
 	i = 0;
+	// if (file->ray->drawstart < 0 || file->ray->drawend < 0)
+	// 	return;
 	while (i < file->ray->drawstart)
 	{
 		//printf("heightline : %i, perpwalldist = %f, drawstart : %i, drawend : %i, i = %i, x = %f\n", file->ray->heightline, file->ray->perpwalldist, file->ray->drawstart, file->ray->drawend, i, x);
 		my_mlx_pixel_put((&file->img_minimap), (int)x, i, file->F);
 		i++;
 	}
-	i = file->ray->drawstart;
 	while (i < file->ray->drawend)
 	{
 		//printf("heightline : %i, perpwalldist = %f, drawstart : %i, drawend : %i, i = %i, x = %f\n", file->ray->heightline, file->ray->perpwalldist, file->ray->drawstart, file->ray->drawend, i, x);
 		my_mlx_pixel_put((&file->img_minimap), (int)x, i, 0x00FF0000);
 		i++;
 	}
-	i = file->ray->drawend;
-	while (i < SIZEPIC_HEIGHT - 1)
+	while (i < SIZEPIC_HEIGHT)
 	{
 		//printf("heightline : %i, perpwalldist = %f, drawstart : %i, drawend : %i, i = %i, x = %f\n", file->ray->heightline, file->ray->perpwalldist, file->ray->drawstart, file->ray->drawend, i, x);
 		my_mlx_pixel_put((&file->img_minimap), (int)x, i, file->C);
@@ -173,18 +177,15 @@ void	draw_clean_line(t_file *file)
 void raycasting(t_file *file)
 {
 	double x;
-
+	
 	x = 0;
-	draw_clean_line(file);
- // potentiellement a deplacer dans l'appelant pour pouvoir reexecuter la commande de raycasting en independant
-	while (x < SIZEPIC_WIDTH) // modifiable par la width tout court si ecran avec resolution fixe
+	while (x < SIZEPIC_WIDTH)
 	{
 		file->ray = init_ray(file);
 		// if (file->ray == NULL)
 		// 	return (ERROR);
 		//file->ray->camerax = 2 * x / (double)(SIZEPIC_WIDTH) - 1;
 		file->ray->camerax = x / (double)SIZEPIC_WIDTH * 2.0 - 1.0;
-		//printf("canerax = %f\n", file->ray->camerax);
 		file->ray->raydirx = file->player->dirx + file->player->planx * file->ray->camerax;
 		file->ray->raydiry = file->player->diry + file->player->plany * file->ray->camerax;
 		calc_delta(file);

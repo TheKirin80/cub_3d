@@ -6,7 +6,7 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 17:34:09 by akefeder          #+#    #+#             */
-/*   Updated: 2023/10/22 21:05:05 by akefeder         ###   ########.fr       */
+/*   Updated: 2023/10/23 00:26:25 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	my_mlx_pixel_put(t_img *data, int x, int y, int color)
 {
 	char	*dst;
 
-	if (x < SIZEPIC_WIDTH && y < SIZEPIC_HEIGHT)
+	if (x >= 0 && x < SIZEPIC_WIDTH && y >= 0 && y < SIZEPIC_HEIGHT)
 	{
 		dst = data->addr + (y * data->line_length + x * (data->bpp / 8));
 		*(unsigned int*)dst = color;
