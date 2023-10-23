@@ -6,7 +6,7 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 17:34:09 by akefeder          #+#    #+#             */
-/*   Updated: 2023/10/23 18:46:09 by akefeder         ###   ########.fr       */
+/*   Updated: 2023/10/24 01:31:33 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,21 @@ void	my_mlx_pixel_put(t_img *data, int x, int y, int color)
 		dst = data->addr + (y * data->line_length + x * (data->bpp / 8));
 		*(unsigned int*)dst = color;
 	}
+	
+}
+
+int	my_mlx_pixel_take(t_img *data, int x, int y)
+{
+	char	*dst;
+	int		color;
+
+	color = 0;
+	if (x >= 0 && x < SIZEPIC_WIDTH && y >= 0 && y < SIZEPIC_HEIGHT)
+	{
+		dst = data->addr + (y * data->line_length + x * (data->bpp / 8));
+		color = *(unsigned int*)dst;
+	}
+	return (color);
 	
 }
 
@@ -61,6 +76,20 @@ void	my_mlx_pixel_put(t_img *data, int x, int y, int color)
 // 		i++;
 // 	}
 // }
+void	load_addr(t_file *file)
+{
+	file->img_north.addr = mlx_get_data_addr(file->img_north.img,&(file->img_north.bpp),
+			&(file->img_north.line_length), &(file->img_north.endian));
+	file->img_south.addr = mlx_get_data_addr(file->img_south.img,&(file->img_south.bpp),
+			&(file->img_south.line_length), &(file->img_south.endian));
+	file->img_east.addr = mlx_get_data_addr(file->img_east.img,&(file->img_east.bpp),
+			&(file->img_east.line_length), &(file->img_east.endian));
+	file->img_west.addr = mlx_get_data_addr(file->img_west.img,&(file->img_west.bpp),
+			&(file->img_west.line_length), &(file->img_west.endian));
+	file->img_minimap.addr = mlx_get_data_addr(file->img_minimap.img,&(file->img_minimap.bpp),
+			&(file->img_minimap.line_length), &(file->img_minimap.endian));
+}
+
 int	load_img(t_file *file)
 {
 	file->img_north.img =  mlx_xpm_file_to_image(file->mlx, file->north, &(file->img_north.width), &(file->img_north.height));
@@ -71,8 +100,7 @@ int	load_img(t_file *file)
 			SIZEPIC_HEIGHT);
 	if (!file->img_north.img || !file->img_south.img || !file->img_east.img || !file->img_west.img || !file->img_minimap.img)
 		return (ERROR);
-	file->img_minimap.addr = mlx_get_data_addr(file->img_minimap.img,&(file->img_minimap.bpp),
-			&(file->img_minimap.line_length), &(file->img_minimap.endian));
+	load_addr(file);
 	return (OK);
 }
 t_player	*charg_player(char orient, int i, int j)

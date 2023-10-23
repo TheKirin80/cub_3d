@@ -6,7 +6,7 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 15:28:43 by akefeder          #+#    #+#             */
-/*   Updated: 2023/10/23 18:31:24 by akefeder         ###   ########.fr       */
+/*   Updated: 2023/10/24 01:36:11 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,10 @@
 # define FULL 1
 # define FIND 1
 # define CONTINUE 1
-# define SIZEPIC_WIDTH 1024
-# define SIZEPIC_HEIGHT 768
-# define TEXTSIZE		64
+# define SIZEPIC_WIDTH 1680
+# define SIZEPIC_HEIGHT 1050
+# define TEXTWIDTH		64
+# define TEXTHEIGHT 	64
 # define ROTATE_LEFT	65361
 # define ROTATE_RIGHT	65363
 # define KEY_W 119
@@ -50,6 +51,7 @@ typedef struct s_file	t_file;
 typedef struct s_lect	t_lect;
 typedef struct s_pos	t_pos;
 typedef struct s_player	t_player;
+typedef struct s_texture	t_texture;
 typedef struct s_ray	t_ray;
 
 struct s_map
@@ -89,6 +91,17 @@ struct s_player
 	char orient;
 	double moovespeed;
 	double rotspeed;
+};
+
+struct	s_texture
+{
+	char			texdir;
+	double			wallx;
+	int				texx;
+	int				texy;
+	double			step;
+	double			texpos;
+	t_img			tex_used;
 };
 
 struct	s_ray
@@ -138,6 +151,7 @@ struct s_file
 	t_img	img_minimap;
 	t_player	*player;
 	t_ray	*ray;
+	t_texture tex;
 };
 
 struct	s_lect
@@ -182,6 +196,7 @@ int		gest_error(int code, t_file *file);
 int		load_img(t_file *file);
 int		charg_file(t_file *file);
 void	my_mlx_pixel_put(t_img *data, int x, int y, int color);
+int		my_mlx_pixel_take(t_img *data, int x, int y);
 //void	affiche_img(int i, int j, char obj, t_file *file);
 void	affiche_map(t_file *file);
 // --------------- gest_close.c  ---------------
@@ -234,6 +249,7 @@ void raycasting(t_file *file);
 // --------------- raycasting_init.c  ---------------
 void	init_dir_plan(t_file *file);
 void	init_component(t_file *file);
+void	init_texture(t_file *file);
 // --------------- rotate.c  ---------------
 void	rotate_right(t_file *file);
 void	rotate_left(t_file *file);

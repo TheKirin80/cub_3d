@@ -6,7 +6,7 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 22:53:41 by akefeder          #+#    #+#             */
-/*   Updated: 2023/10/23 17:37:33 by akefeder         ###   ########.fr       */
+/*   Updated: 2023/10/24 01:33:47 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,6 +127,25 @@ void	calc_drawtool(t_file *file)
 		file->ray->drawend = SIZEPIC_HEIGHT;
 }
 
+void	draw_texture(t_file *file, double x, int i)
+{	
+	init_texture(file);
+	file->tex.texx = (int)(file->tex.wallx /(double)(file->tex.tex_used.width));
+	if (file->ray->side == 0 && file->ray->raydirx > 0)
+		file->tex.texx = file->tex.tex_used.width - file->tex.texx - 1;
+	if (file->ray->side == 1 && file->ray->raydiry < 0)
+		file->tex.texx = file->tex.tex_used.width - file->tex.texx - 1;
+	file->tex.step = 1.0f * file->tex.tex_used.height / file->ray->heightline;
+	file->tex.texpos = (file->ray->drawstart - SIZEPIC_HEIGHT / 2 + file->ray->heightline / 2) * file->tex.step;
+	while (i < file->ray->drawend)
+	{
+		file->tex.texy = (int)(file->tex.texpos) & (file->tex.tex_used.height - 1);
+		file->tex.texpos = file->tex.texpos + file->tex.step;
+		my_mlx_pixel_put(&(file->img_minimap), x, i, my_mlx_pixel_take(&(file->tex.tex_used), file->tex.texx, file->tex.texy));
+		i++;
+	}
+}
+
 void	draw_verticale_line(t_file *file, double x)
 {
 	int	i;
@@ -140,12 +159,14 @@ void	draw_verticale_line(t_file *file, double x)
 		my_mlx_pixel_put((&file->img_minimap), (int)x, i, file->C);
 		i++;
 	}
-	while (i < file->ray->drawend)
-	{
-		//printf("heightline : %i, perpwalldist = %f, drawstart : %i, drawend : %i, i = %i, x = %f\n", file->ray->heightline, file->ray->perpwalldist, file->ray->drawstart, file->ray->drawend, i, x);
-		my_mlx_pixel_put((&file->img_minimap), (int)x, i, 0x00FF0000);
-		i++;
-	}
+	// while (i < file->ray->drawend)
+	// {
+	// 	my_mlx_pixel_put((&file->img_minimap), (int)x, i, 0x00FF0000);
+	// 	i++;
+	// }
+	if (i <= file->ray->drawend)
+		draw_texture(file, x, i);
+	i = file->ray->drawend;
 	while (i < SIZEPIC_HEIGHT)
 	{
 		//printf("heightline : %i, perpwalldist = %f, drawstart : %i, drawend : %i, i = %i, x = %f\n", file->ray->heightline, file->ray->perpwalldist, file->ray->drawstart, file->ray->drawend, i, x);

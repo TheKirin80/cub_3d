@@ -11,7 +11,7 @@ F   0,255,0
 
 
 C 255,255,255
-EA ./img/redbrick.xp
+EA ./img/redbrick.xpm
 WE ./img/bluestone.xpm
 
         

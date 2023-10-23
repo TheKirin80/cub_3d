@@ -1,6 +1,7 @@
 {
     "C_Cpp.errorSquiggles": "disabled",
     "files.associations": {
-        "cub_3d.h": "c"
+        "cub_3d.h": "c",
+        "plo": "c"
     }
 }
