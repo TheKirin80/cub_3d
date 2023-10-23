@@ -6,7 +6,7 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 22:53:41 by akefeder          #+#    #+#             */
-/*   Updated: 2023/10/23 13:02:48 by akefeder         ###   ########.fr       */
+/*   Updated: 2023/10/23 17:37:33 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,7 +137,7 @@ void	draw_verticale_line(t_file *file, double x)
 	while (i < file->ray->drawstart)
 	{
 		//printf("heightline : %i, perpwalldist = %f, drawstart : %i, drawend : %i, i = %i, x = %f\n", file->ray->heightline, file->ray->perpwalldist, file->ray->drawstart, file->ray->drawend, i, x);
-		my_mlx_pixel_put((&file->img_minimap), (int)x, i, file->F);
+		my_mlx_pixel_put((&file->img_minimap), (int)x, i, file->C);
 		i++;
 	}
 	while (i < file->ray->drawend)
@@ -149,7 +149,7 @@ void	draw_verticale_line(t_file *file, double x)
 	while (i < SIZEPIC_HEIGHT)
 	{
 		//printf("heightline : %i, perpwalldist = %f, drawstart : %i, drawend : %i, i = %i, x = %f\n", file->ray->heightline, file->ray->perpwalldist, file->ray->drawstart, file->ray->drawend, i, x);
-		my_mlx_pixel_put((&file->img_minimap), (int)x, i, file->C);
+		my_mlx_pixel_put((&file->img_minimap), (int)x, i, file->F);
 		i++;
 	}
 }
@@ -194,6 +194,7 @@ void raycasting(t_file *file)
 		calc_drawtool(file);
 		draw_verticale_line(file, x);
 		free(file->ray);
+		file->ray = NULL;
 		x++;
 	}
 	mlx_put_image_to_window(file->mlx, file->win, file->img_minimap.img, 0, 0);

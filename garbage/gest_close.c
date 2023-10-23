@@ -6,25 +6,25 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 03:59:01 by akefeder          #+#    #+#             */
-/*   Updated: 2023/03/24 05:29:40 by akefeder         ###   ########.fr       */
+/*   Updated: 2023/10/23 18:45:09 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub_3d.h"
 
-// void	destroy_img(t_file *file)
-// {
-// 	if (file->bord)
-// 		mlx_destroy_image(file->mlx, file->bord);
-// 	if (file->fond)
-// 		mlx_destroy_image(file->mlx, file->fond);
-// 	if (file->play)
-// 		mlx_destroy_image(file->mlx, file->play);
-// 	if (file->exit)
-// 		mlx_destroy_image(file->mlx, file->exit);
-// 	if (file->col)
-// 		mlx_destroy_image(file->mlx, file->col);
-// }
+void	destroy_img(t_file *file)
+{
+	if (file->img_north.img)
+		mlx_destroy_image(file->mlx, file->img_north.img);
+	if (file->img_south.img)
+		mlx_destroy_image(file->mlx, file->img_south.img);
+	if (file->img_east.img)
+		mlx_destroy_image(file->mlx, file->img_east.img);
+	if (file->img_west.img)
+		mlx_destroy_image(file->mlx, file->img_west.img);
+	if (file->img_minimap.img)
+		mlx_destroy_image(file->mlx, file->img_minimap.img);
+}
 
 void	free_direction(t_file *file)
 {
@@ -61,7 +61,7 @@ void	free_file(t_file *file)
 {
 	free_direction(file);
 	free_tmp(file->tmp);
-	//destroy_img(file);
+	destroy_img(file);
 	if (file->win)
 		mlx_destroy_window(file->mlx, file->win);
 	file->win = NULL;
@@ -71,6 +71,10 @@ void	free_file(t_file *file)
 		free(file->mlx);
  	if (file->map != NULL)
  		free_map(file);
+	if (file->player != NULL)
+		free(file->player);
+	if (file->ray != NULL)
+		free(file->ray);
 }
 
 int	gest_close(t_file *file)

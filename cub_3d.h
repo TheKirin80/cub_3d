@@ -6,7 +6,7 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 15:28:43 by akefeder          #+#    #+#             */
-/*   Updated: 2023/10/23 13:34:43 by akefeder         ###   ########.fr       */
+/*   Updated: 2023/10/23 18:31:24 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@
 # define CONTINUE 1
 # define SIZEPIC_WIDTH 1024
 # define SIZEPIC_HEIGHT 768
+# define TEXTSIZE		64
 # define ROTATE_LEFT	65361
 # define ROTATE_RIGHT	65363
 # define KEY_W 119
@@ -67,6 +68,8 @@ struct s_img
 	int		bpp;
 	int		line_length;
 	int		endian;
+	int		width;
+	int		height;
 };
 
 struct s_pos

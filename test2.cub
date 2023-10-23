@@ -4,15 +4,15 @@
 
 
 
-NO fdfsdfsdf
+NO ./img/greystone.xpm
 
-SO       gdgd     
+SO       ./img/mossy.xpm   
 F   0,255,0
 
 
 C 255,255,255
-EA asaasdasda
-WE END
+EA ./img/redbrick.xp
+WE ./img/bluestone.xpm
 
         
 111111111
