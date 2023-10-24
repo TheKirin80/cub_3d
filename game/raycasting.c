@@ -6,7 +6,7 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 22:53:41 by akefeder          #+#    #+#             */
-/*   Updated: 2023/10/24 01:33:47 by akefeder         ###   ########.fr       */
+/*   Updated: 2023/10/24 01:51:57 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,7 +130,7 @@ void	calc_drawtool(t_file *file)
 void	draw_texture(t_file *file, double x, int i)
 {	
 	init_texture(file);
-	file->tex.texx = (int)(file->tex.wallx /(double)(file->tex.tex_used.width));
+	file->tex.texx = (int)(file->tex.wallx * (double)(file->tex.tex_used.width));
 	if (file->ray->side == 0 && file->ray->raydirx > 0)
 		file->tex.texx = file->tex.tex_used.width - file->tex.texx - 1;
 	if (file->ray->side == 1 && file->ray->raydiry < 0)
