@@ -6,7 +6,7 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 04:04:38 by akefeder          #+#    #+#             */
-/*   Updated: 2023/03/24 05:40:57 by akefeder         ###   ########.fr       */
+/*   Updated: 2023/10/24 21:07:23 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	sizing_map(t_file *file)
 {
 	int	i;
-	int res;
+	int	res;
 
 	i = 0;
 	while (file->map->map[i] != NULL)
@@ -45,5 +45,4 @@ void	change_two_occurence(t_file *file)
 		}
 		i++;
 	}
-	//print_tab(file->map->map, "map after verif");
 }

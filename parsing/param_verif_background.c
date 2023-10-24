@@ -6,16 +6,16 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 23:01:40 by akefeder          #+#    #+#             */
-/*   Updated: 2023/03/25 00:00:19 by akefeder         ###   ########.fr       */
+/*   Updated: 2023/10/24 19:22:18 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub_3d.h"
 
-int line_full_space(char *line)
+int	line_full_space(char *line)
 {
-	int i;
-	
+	int	i;
+
 	i = 0;
 	while (line[i] == ' ')
 	{
@@ -24,6 +24,26 @@ int line_full_space(char *line)
 	if (line[i] == '\0')
 		return (OK);
 	return (ERROR);
+}
+
+int	fill_param_2(char *param, t_file *file, char c)
+{
+	if (c == 'E')
+	{
+		if (east(param, file) == ERROR)
+			return (ERROR);
+	}
+	else if (c == 'F')
+	{
+		if (color(param, file) == ERROR)
+			return (ERROR);
+	}
+	else if (c == 'C')
+	{
+		if (color(param, file) == ERROR)
+			return (ERROR);
+	}
+	return (OK);
 }
 
 int	fill_param(char *param, t_file *file, char c)
@@ -43,28 +63,15 @@ int	fill_param(char *param, t_file *file, char c)
 		if (west(param, file) == ERROR)
 			return (ERROR);
 	}
-	else if (c == 'E')
-	{
-		if (east(param, file) == ERROR)
-			return (ERROR);
-	}
-	else if (c == 'F')
-	{
-		if (color(param, file) == ERROR)
-			return (ERROR);
-	}
-	else if (c == 'C')
-	{
-		if (color(param, file) == ERROR)
-			return (ERROR);
-	}
+	else if (fill_param_2(param, file, c) == ERROR)
+		return (ERROR);
 	return (OK);
 }
 
-int find_param(char *param, t_file *file)
+int	find_param(char *param, t_file *file)
 {
-	int	find;
-	char *carac;
+	int		find;
+	char	*carac;
 
 	carac = "NSWEFC";
 	if (line_full_space(param) == OK)
@@ -79,8 +86,6 @@ int find_param(char *param, t_file *file)
 	return (OK);
 }
 
-
-
 int	check_background(t_file *file)
 {
 	int	i;
@@ -88,25 +93,18 @@ int	check_background(t_file *file)
 	i = 0;
 	while (file->tmp[i] != NULL && file->full == 0)
 	{
-		if (find_param(file->tmp[i],file) == ERROR)
+		if (find_param(file->tmp[i], file) == ERROR)
 			return (ERROR);
-		//printf("i : %i\t\tstr : %s\n", i, file->tmp[i]);
 		i++;
 		file->full = is_full(file);
 	}
-	//printf("je suis la\n");
 	if (file->full != 1)
 		return (ERROR);
-	//printf("i av : %i\n", i);
 	while (file->tmp[i] != NULL && line_full_space(file->tmp[i]) == OK)
 		i++;
-	//printf("i ap : %i\n", i);
-	if (rempli_map(file, i) == ERROR) //old_map.c
+	if (rempli_map(file, i) == ERROR)
 		return (ERROR);
 	if (verif_map(file) == ERROR)
 		return (ERROR);
-	//print_tab(file->map->map, " check map");
 	return (OK);
 }
-
-

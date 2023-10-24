@@ -23,7 +23,9 @@ GAME_FILES	=	file.c\
 				moove.c\
 				raycasting.c\
 				raycasting_init.c\
-				rotate.c
+				rotate.c\
+				raycasting_calc.c\
+				raycasting_img.c
 GARB_FILES	=	error.c\
 				free.c\
 				gest_close.c

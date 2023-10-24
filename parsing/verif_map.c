@@ -6,7 +6,7 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 23:42:52 by akefeder          #+#    #+#             */
-/*   Updated: 2023/10/24 18:34:52 by akefeder         ###   ########.fr       */
+/*   Updated: 2023/10/24 21:05:13 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,11 @@
 
 int	verif_single_pos(t_file *file)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 	char	ret;
 
 	i = 0;
-	//ret = 'F';
 	while (file->map->map[i] != NULL)
 	{
 		j = 0;
@@ -44,10 +43,10 @@ int	verif_single_pos(t_file *file)
 
 int	modif_for_traitment(t_file *file, int i)
 {
-	int	j;
+	int		j;
 	char	*copy;
 
-	copy = malloc((file->map->len + 1) * sizeof(char)); 
+	copy = malloc((file->map->len + 1) * sizeof(char));
 	if (copy == NULL)
 		return (ERROR);
 	j = 0;
@@ -70,9 +69,8 @@ int	modif_for_traitment(t_file *file, int i)
 	return (OK);
 }
 
-int verif_encaps_zero(t_file *file, int x, int y)
+int	verif_encaps_zero(t_file *file, int x, int y)
 {
-	//printf("X : %i\tY : %i\tValue : |%c|\n", x, y, file->map->map[x][y]);
 	if (x == 0 || x == file->map->maplen - 1)
 		return (ERROR);
 	if (y == 0 || y == file->map->len - 1)

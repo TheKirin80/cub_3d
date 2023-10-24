@@ -6,7 +6,7 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 18:04:35 by akefeder          #+#    #+#             */
-/*   Updated: 2023/10/24 18:06:32 by akefeder         ###   ########.fr       */
+/*   Updated: 2023/10/24 19:08:16 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,14 @@ int	insert_static(char **tmp, int fd)
 		{
 			if (*tmp)
 				free(*tmp);
-			return(*tmp = NULL, ERROR);
+			return (*tmp = NULL, ERROR);
 		}
 		copy = *tmp;
 		*tmp = ft_strjoin(copy, buf);
 		free(copy);
 		copy = NULL;
 		if (*tmp == NULL)
-			return(ERROR);
+			return (ERROR);
 		if (ft_backslash_n(*tmp) == FIND)
 			break ;
 		nb_car_lu = read(fd, buf, BUFFER_SIZE);

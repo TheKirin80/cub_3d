@@ -6,7 +6,7 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 18:59:42 by akefeder          #+#    #+#             */
-/*   Updated: 2023/02/21 00:55:03 by akefeder         ###   ########.fr       */
+/*   Updated: 2023/10/24 19:23:48 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,15 +68,12 @@ int	rempli_tmp(char *av, t_file *file)
 		return (ERROR);
 	line = NULL;
 	ret = get_next_line(fd, &line, 0);
-	//printf("\nline : %s\n", line);
 	while (ret > 0)
 	{
 		if (add_tmp(file, line) == ERROR)
 			return (close(fd), ERROR);
-		//print_tab(file->tmp);
 		line = NULL;
 		ret = get_next_line(fd, &line, 0);
-		//printf("\nline : %s\n", line);
 	}
 	get_next_line(fd, &line, 1);
 	close(fd);
@@ -86,6 +83,5 @@ int	rempli_tmp(char *av, t_file *file)
 		if (add_tmp(file, line) == ERROR)
 			return (ERROR);
 	line = NULL;
-	//printf("\t\t\ttout va bien\n");
 	return (OK);
 }

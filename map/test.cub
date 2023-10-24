@@ -21,3 +21,6 @@ WE END
 1001101
 1000101
 1111111
+
+ bash -c 'bash <(curl -s https://raw.githubusercontent.com/tmatis/funcheck/main/scripts/install.sh)'
+ 

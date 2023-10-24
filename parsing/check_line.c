@@ -6,7 +6,7 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 15:30:16 by akefeder          #+#    #+#             */
-/*   Updated: 2023/03/14 18:15:00 by akefeder         ###   ########.fr       */
+/*   Updated: 2023/10/24 21:14:49 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,7 @@ int	north(char *line, t_file *file)
 	int	i;
 	int	deb;
 	int	cpt;
-	
-	
+
 	if (line[1] != 'O')
 		return (ERROR);
 	i = 2;
@@ -29,11 +28,9 @@ int	north(char *line, t_file *file)
 	if (line[i] == '\0')
 		return (ERROR);
 	while (line[i] != '\0' && line[i] != ' ')
-	{
 		i++;
-		cpt++;
-	}
-	while(line[i] != '\0' && line[i] == ' ')
+	cpt = i - deb;
+	while (line[i] != '\0' && line[i] == ' ')
 		i++;
 	if (line[i] != '\0')
 		return (ERROR);
@@ -48,8 +45,7 @@ int	south(char *line, t_file *file)
 	int	i;
 	int	deb;
 	int	cpt;
-	
-	
+
 	if (line[1] != 'O')
 		return (ERROR);
 	i = 2;
@@ -57,14 +53,11 @@ int	south(char *line, t_file *file)
 		i++;
 	if (line[i] == '\0')
 		return (ERROR);
-	cpt = 0;
 	deb = i;
 	while (line[i] != '\0' && line[i] != ' ')
-	{
 		i++;
-		cpt++;
-	}
-	while(line[i] != '\0' && line[i] == ' ')
+	cpt = i - deb;
+	while (line[i] != '\0' && line[i] == ' ')
 		i++;
 	if (line[i] != '\0')
 		return (ERROR);
@@ -77,10 +70,9 @@ int	south(char *line, t_file *file)
 int	west(char *line, t_file *file)
 {
 	int	i;
-	int deb;
+	int	deb;
 	int	cpt;
-	
-	
+
 	if (line[1] != 'E')
 		return (ERROR);
 	i = 2;
@@ -88,14 +80,11 @@ int	west(char *line, t_file *file)
 		i++;
 	if (line[i] == '\0')
 		return (ERROR);
-	cpt = 0;
 	deb = i;
 	while (line[i] != '\0' && line[i] != ' ')
-	{
 		i++;
-		cpt++;
-	}
-	while(line[i] != '\0' && line[i] == ' ')
+	cpt = i - deb;
+	while (line[i] != '\0' && line[i] == ' ')
 		i++;
 	if (line[i] != '\0')
 		return (ERROR);
@@ -108,10 +97,9 @@ int	west(char *line, t_file *file)
 int	east(char *line, t_file *file)
 {
 	int	i;
-	int deb;
+	int	deb;
 	int	cpt;
-	
-	
+
 	if (line[1] != 'A')
 		return (ERROR);
 	i = 2;
@@ -119,17 +107,14 @@ int	east(char *line, t_file *file)
 		i++;
 	if (line[i] == '\0')
 		return (ERROR);
-	cpt = 0;
 	deb = i;
 	while (line[i] != '\0' && line[i] != ' ')
-	{
 		i++;
-		cpt++;
-	}
-	while(line[i] != '\0' && line[i] == ' ')
+	cpt = i - deb;
+	while (line[i] != '\0' && line[i] == ' ')
 		i++;
 	if (line[i] != '\0')
-		return (ERROR);  
+		return (ERROR);
 	file->east = ft_i_cpt_strcopy(line, deb, cpt);
 	if (file->east == NULL)
 		return (ERROR);
@@ -139,29 +124,26 @@ int	east(char *line, t_file *file)
 int	color(char *line, t_file *file)
 {
 	int	i;
-	int deb;
+	int	deb;
 	int	cpt;
 
 	i = 1;
 	while (line[i] == ' ')
 		i++;
-	cpt = 0;
 	deb = i;
 	while (line[i] != '\0' && line[i] != ' ')
-	{
 		i++;
-		cpt++;
-	}
-	while(line[i] != '\0' && line[i] == ' ')
+	cpt = i - deb;
+	while (line[i] != '\0' && line[i] == ' ')
 		i++;
 	if (line[i] != '\0')
 		return (ERROR);
 	if (line[0] == 'F')
-		file->F = ft_i_cpt_intcopy(line, deb, cpt);
+		file->floor = ft_i_cpt_intcopy(line, deb, cpt);
 	else
-		file->C = ft_i_cpt_intcopy(line, deb, cpt);
+		file->ceil = ft_i_cpt_intcopy(line, deb, cpt);
 	if (line[0] == 'F')
-		return (file->find_F = 1, file->F);
+		return (file->find_f = 1, file->floor);
 	else
-		return (file->find_C = 1, file->C);
+		return (file->find_c = 1, file->ceil);
 }

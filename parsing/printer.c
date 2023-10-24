@@ -6,7 +6,7 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 00:22:54 by akefeder          #+#    #+#             */
-/*   Updated: 2023/10/22 21:38:07 by akefeder         ###   ########.fr       */
+/*   Updated: 2023/10/24 21:14:49 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ void	print_file(t_file *file, char *descriptor)
 	printf("south : %s\n", file->south);
 	printf("east : %s\n", file->east);
 	printf("west : %s\n", file->west);
-	printf("F : %i\n", file->F);
-	printf("C : %i\n", file->C);
+	printf("F : %i\n", file->floor);
+	printf("C : %i\n", file->ceil);
 	printf("full : %i\n", file->full);
 	printf("--------%s------------------\n",descriptor);
 	

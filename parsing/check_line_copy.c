@@ -6,7 +6,7 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 19:26:46 by akefeder          #+#    #+#             */
-/*   Updated: 2023/10/24 18:33:36 by akefeder         ###   ########.fr       */
+/*   Updated: 2023/10/24 19:03:54 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ char	*ft_i_cpt_strcopy(char *line, int deb, int cpt)
 {
 	int		j;
 	char	*cpy;	
-	
+
 	j = 0;
 	cpy = malloc((cpt + 2) * sizeof(char));
 	if (cpy == NULL)
@@ -30,17 +30,17 @@ char	*ft_i_cpt_strcopy(char *line, int deb, int cpt)
 	return (cpy);
 }
 
-int ft_strlen_num(char *str, int i)
+int	ft_strlen_num(char *str, int i)
 {
 	int	ret;
-	
+
 	ret = 0;
 	while (str[i] != '\0' && is_num(str[i]) == OK)
 	{
 		i++;
 		ret++;
 	}
-	return (ret);	
+	return (ret);
 }
 //utiliser le retour de strlen num pour pouvoir savoir la taille de chaine avant
 //la conversion en int puis l'add a ret
@@ -48,7 +48,7 @@ int ft_strlen_num(char *str, int i)
 int	check_etat(char *line, int deb, int cpt)
 {
 	int	i;
-	int cpt_virg;
+	int	cpt_virg;
 
 	if (cpt > 11)
 		return (ERROR);
@@ -67,16 +67,12 @@ int	check_etat(char *line, int deb, int cpt)
 	return (OK);
 }
 
-
-
-int		ft_rempli_ret(int *ret, int *list_cpt, char *color)
+int	ft_rempli_ret(int *ret, int *list_cpt, char *color)
 {
 	int	stock;
 
-	//stock = 0;
 	color[list_cpt[1]] = '\0';
 	stock = ft_atoi_color(color);
-	//printf("color : |%s|\tstock : %i\tret : %i\n", color, stock, *ret);
 	if (stock == ERROR)
 		return (ERROR);
 	*ret = *ret + stock;
@@ -86,14 +82,13 @@ int		ft_rempli_ret(int *ret, int *list_cpt, char *color)
 	list_cpt[2] = list_cpt[2] + 1;
 	return (OK);
 }
-//	list_cpt : 0 -> i ; 1 -> j ; 2 -> virgule
-//	list_rest : 0 ->stock ; 1 -> res
-int		ft_i_cpt_intcopy(char *line, int deb, int cpt)
+
+int	ft_i_cpt_intcopy(char *line, int deb, int cpt)
 {
-	int	list_cpt[3];
-	int	ret;
-	char color[13];
-	
+	int		list_cpt[3];
+	int		ret;
+	char	color[13];
+
 	ret = 0;
 	rempli_zero(list_cpt, 3);
 	if (check_etat(line, deb, cpt) == ERROR)
@@ -113,6 +108,6 @@ int		ft_i_cpt_intcopy(char *line, int deb, int cpt)
 		list_cpt[0] = list_cpt[0] + 1;
 	}
 	if (ft_rempli_ret(&ret, list_cpt, color) == ERROR)
-				return (ERROR);
+		return (ERROR);
 	return (ret);
 }

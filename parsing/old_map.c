@@ -6,7 +6,7 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 18:47:53 by akefeder          #+#    #+#             */
-/*   Updated: 2023/03/24 05:28:29 by akefeder         ###   ########.fr       */
+/*   Updated: 2023/10/24 19:07:40 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,10 +71,10 @@ int	rempli_map(t_file *file, int i)
 	prepa_map(file);
 	while (file->tmp[i] != NULL)
 	{
-		if (filter_char(file->tmp[i], "01 NSWE") == ERROR || add_map(file, i) == ERROR)
+		if (filter_char(file->tmp[i], "01 NSWE") == ERROR
+			|| add_map(file, i) == ERROR)
 			return (ERROR);
 		i++;
 	}
-	//print_tab(file->map->map, "rempli map");
 	return (OK);
 }

@@ -6,7 +6,7 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 15:28:43 by akefeder          #+#    #+#             */
-/*   Updated: 2023/10/24 18:04:18 by akefeder         ###   ########.fr       */
+/*   Updated: 2023/10/24 22:03:48 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,14 +45,14 @@
 # define KEY_ECHAP 65307
 # define CARACT_OK "01NOSEAW\n "
 
-typedef struct s_map	t_map;
-typedef struct s_img	t_img;
-typedef struct s_file	t_file;
-typedef struct s_lect	t_lect;
-typedef struct s_pos	t_pos;
-typedef struct s_player	t_player;
+typedef struct s_map		t_map;
+typedef struct s_img		t_img;
+typedef struct s_file		t_file;
+typedef struct s_lect		t_lect;
+typedef struct s_pos		t_pos;
+typedef struct s_player		t_player;
 typedef struct s_texture	t_texture;
-typedef struct s_ray	t_ray;
+typedef struct s_ray		t_ray;
 
 struct s_map
 {
@@ -68,7 +68,7 @@ struct s_img
 	void	*img;
 	char	*addr;
 	int		bpp;
-	int		line_length;
+	int		ll;
 	int		endian;
 	int		width;
 	int		height;
@@ -82,15 +82,15 @@ struct s_pos
 
 struct s_player
 {
-	double posx;
-	double posy;
-	double dirx;
-	double diry;
-	double planx;
-	double plany;
-	char orient;
-	double moovespeed;
-	double rotspeed;
+	double	posx;
+	double	posy;
+	double	dirx;
+	double	diry;
+	double	planx;
+	double	plany;
+	char	orient;
+	double	mvspd;
+	double	rotspeed;
 };
 
 struct	s_texture
@@ -106,52 +106,52 @@ struct	s_texture
 
 struct	s_ray
 {
-	int	mapx;
-	int	mapy;
-	double camerax;
-	double raydirx;
-	double raydiry;
-	double deltastepx;
-	double deltastepy;
-	double stepx;
-	double stepy;
-	double sidestepx;
-	double sidestepy;
-	int	hit;
-	int	side;
-	double perpwalldist;
-	int	heightline;
-	int drawstart;
-	int	drawend; 
+	int		mapx;
+	int		mapy;
+	double	camerax;
+	double	raydirx;
+	double	raydiry;
+	double	deltastepx;
+	double	deltastepy;
+	double	stepx;
+	double	stepy;
+	double	sidestepx;
+	double	sidestepy;
+	int		hit;
+	int		side;
+	double	perpwalldist;
+	int		heightline;
+	int		drawstart;
+	int		drawend;
 };
 
 struct s_file
 {
-	void	*mlx;
-	void	*win;
-	t_map	*map;
-	int		px;
-	int		py;
-	int		nbr_coup;
-	int		keycode;
-	int		find_F;
-	int		find_C;
-	int		F;
-	int		C;
-	char	*north;
-	t_img	img_north;
-	char	*south;
-	t_img	img_south;
-	char	*west;
-	t_img	img_west;
-	char	*east;
-	t_img	img_east;
-	int		full;
-	char	**tmp;
-	t_img	img_minimap;
+	void		*mlx;
+	void		*win;
+	t_map		*map;
+	int			px;
+	int			py;
+	int			nbr_coup;
+	int			keycode;
+	int			find_f;
+	int			find_c;
+	int			floor;
+	int			ceil;
+	char		*north;
+	t_img		img_n;
+	char		*south;
+	t_img		img_s;
+	char		*west;
+	t_img		img_w;
+	char		*east;
+	t_img		img_e;
+	int			full;
+	char		**tmp;
+	t_img		img_map;
 	t_player	*player;
-	t_ray	*ray;
-	t_texture tex;
+	t_ray		*ray;
+	t_texture	tex;
 };
 
 struct	s_lect
@@ -159,7 +159,6 @@ struct	s_lect
 	int		fd;
 	char	*tmp;
 };
-
 
 // --------------- get_next_line.c  ---------------
 int		get_next_line(int fd, char **line, int reset);
@@ -193,11 +192,7 @@ char	is_present_char(char src, char *src_verif);
 // --------------- error.c  ---------------
 int		gest_error(int code, t_file *file);
 // --------------- file.c  ---------------
-int		load_img(t_file *file);
 int		charg_file(t_file *file);
-void	my_mlx_pixel_put(t_img *data, int x, int y, int color);
-int		my_mlx_pixel_take(t_img *data, int x, int y);
-//void	affiche_img(int i, int j, char obj, t_file *file);
 void	affiche_map(t_file *file);
 // --------------- gest_close.c  ---------------
 void	destroy_img(t_file *file);
@@ -244,14 +239,24 @@ int		verif_map(t_file *file);
 void	sizing_map(t_file *file);
 void	change_two_occurence(t_file *file);
 // --------------- moove.c  ---------------
-int	gest_moove(int keycode, t_file *file);
+int		gest_moove(int keycode, t_file *file);
 // --------------- raycasting.c  ---------------
-void raycasting(t_file *file);
+int		raycasting(t_file *file);
 // --------------- raycasting_init.c  ---------------
+t_ray	*init_ray(t_file *file);
 void	init_dir_plan(t_file *file);
 void	init_component(t_file *file);
 void	init_texture(t_file *file);
 // --------------- rotate.c  ---------------
 void	rotate_right(t_file *file);
 void	rotate_left(t_file *file);
+// --------------- raycasting_init.c  ---------------
+void	calc_delta(t_file *file);
+void	calc_step_side(t_file *file);
+void	calc_drawtool(t_file *file);
+// --------------- raycasting_img.c  ---------------
+void	my_mlx_pixel_put(t_img *data, int x, int y, int color);
+int		my_mlx_pixel_take(t_img *data, int x, int y);
+void	load_addr(t_file *file);
+int		load_img(t_file *file);
 #endif

@@ -6,7 +6,7 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 13:03:17 by akefeder          #+#    #+#             */
-/*   Updated: 2023/10/23 15:28:02 by akefeder         ###   ########.fr       */
+/*   Updated: 2023/10/24 22:00:38 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,18 @@ void	vec_rotate(double *x, double *y, double rad)
 
 void	rotate_right(t_file *file)
 {
-	vec_rotate(&file->player->dirx, &file->player->diry, file->player->rotspeed);
-	vec_rotate(&file->player->planx, &file->player->plany, file->player->rotspeed);
+	vec_rotate(&file->player->dirx, &file->player->diry,
+		file->player->rotspeed);
+	vec_rotate(&file->player->planx, &file->player->plany,
+		file->player->rotspeed);
 	raycasting(file);
 }
 
 void	rotate_left(t_file *file)
 {
-	vec_rotate(&file->player->dirx, &file->player->diry, -(file->player->rotspeed));
-	vec_rotate(&file->player->planx, &file->player->plany, -(file->player->rotspeed));
+	vec_rotate(&file->player->dirx, &file->player->diry,
+		-(file->player->rotspeed));
+	vec_rotate(&file->player->planx, &file->player->plany,
+		-(file->player->rotspeed));
 	raycasting(file);
 }

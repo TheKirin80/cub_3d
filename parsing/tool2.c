@@ -6,7 +6,7 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 02:16:16 by akefeder          #+#    #+#             */
-/*   Updated: 2023/03/23 00:11:25 by akefeder         ###   ########.fr       */
+/*   Updated: 2023/10/24 18:58:42 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ int	is_present(char src, char *src_verif)
 int	filter_char(char *src, char *filter)
 {
 	int	i;
-	int j;
-	int find;
+	int	j;
+	int	find;
 
 	i = 0;
 	find = 0;
@@ -57,11 +57,11 @@ int	is_num(char src)
 	return (ERROR);
 }
 
-int ft_atoi_color(char *color)
+int	ft_atoi_color(char *color)
 {
 	int	i;
 	int	ret;
-	
+
 	i = 0;
 	ret = 0;
 	while (color[i] != '\0')
@@ -70,22 +70,22 @@ int ft_atoi_color(char *color)
 		if (ret > 255)
 			return (ERROR);
 		i++;
- 	}
+	}
 	return (ret);
 }
 
 char	*ft_strcopy(char *src)
 {
-	int	i;
+	int		i;
 	char	*cpy;
-	
+
 	if (src == NULL)
 		return (NULL);
 	cpy = malloc((ft_strlen(src) + 1) * sizeof(char));
 	if (cpy == NULL)
 		return (NULL);
 	i = 0;
-	while(src[i] != '\0')
+	while (src[i] != '\0')
 	{
 		cpy[i] = src[i];
 		i++;

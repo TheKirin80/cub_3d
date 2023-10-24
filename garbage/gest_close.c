@@ -6,7 +6,7 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 03:59:01 by akefeder          #+#    #+#             */
-/*   Updated: 2023/10/23 18:45:09 by akefeder         ###   ########.fr       */
+/*   Updated: 2023/10/24 22:08:45 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,16 @@
 
 void	destroy_img(t_file *file)
 {
-	if (file->img_north.img)
-		mlx_destroy_image(file->mlx, file->img_north.img);
-	if (file->img_south.img)
-		mlx_destroy_image(file->mlx, file->img_south.img);
-	if (file->img_east.img)
-		mlx_destroy_image(file->mlx, file->img_east.img);
-	if (file->img_west.img)
-		mlx_destroy_image(file->mlx, file->img_west.img);
-	if (file->img_minimap.img)
-		mlx_destroy_image(file->mlx, file->img_minimap.img);
+	if (file->img_n.img)
+		mlx_destroy_image(file->mlx, file->img_n.img);
+	if (file->img_s.img)
+		mlx_destroy_image(file->mlx, file->img_s.img);
+	if (file->img_e.img)
+		mlx_destroy_image(file->mlx, file->img_e.img);
+	if (file->img_w.img)
+		mlx_destroy_image(file->mlx, file->img_w.img);
+	if (file->img_map.img)
+		mlx_destroy_image(file->mlx, file->img_map.img);
 }
 
 void	free_direction(t_file *file)
@@ -47,7 +47,6 @@ void	free_map(t_file *file)
 	{
 		while (file->map->map[i] != NULL)
 		{
-			//printf("file map : %s\t\t\ti : %i\n", file->map->map[i], i);
 			free(file->map->map[i]);
 			i++;
 		}
@@ -69,8 +68,8 @@ void	free_file(t_file *file)
 		mlx_destroy_display(file->mlx);
 	if (file->mlx)
 		free(file->mlx);
- 	if (file->map != NULL)
- 		free_map(file);
+	if (file->map != NULL)
+		free_map(file);
 	if (file->player != NULL)
 		free(file->player);
 	if (file->ray != NULL)
@@ -79,16 +78,6 @@ void	free_file(t_file *file)
 
 int	gest_close(t_file *file)
 {
-	//affichage(file, 0);
 	free_file(file);
-	//destroy_img(file);
-	// if (file->win)
-	// 	mlx_destroy_window(file->mlx, file->win);
-	// file->win = NULL;
-	// if (file->mlx)
-	// 	mlx_destroy_display(file->mlx);
-	// if (file->mlx)
-	// 	free(file->mlx);
-	// free_map(file);
 	exit(0);
 }
