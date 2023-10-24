@@ -6,7 +6,7 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 17:34:09 by akefeder          #+#    #+#             */
-/*   Updated: 2023/10/24 01:31:33 by akefeder         ###   ########.fr       */
+/*   Updated: 2023/10/24 18:21:46 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	my_mlx_pixel_take(t_img *data, int x, int y)
 	int		color;
 
 	color = 0;
-	if (x >= 0 && x < SIZEPIC_WIDTH && y >= 0 && y < SIZEPIC_HEIGHT)
+	if (x >= 0 && x < data->width && y >= 0 && y < data->height)
 	{
 		dst = data->addr + (y * data->line_length + x * (data->bpp / 8));
 		color = *(unsigned int*)dst;

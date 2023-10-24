@@ -6,7 +6,7 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 15:28:43 by akefeder          #+#    #+#             */
-/*   Updated: 2023/10/24 01:36:11 by akefeder         ###   ########.fr       */
+/*   Updated: 2023/10/24 18:04:18 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@
 # define FULL 1
 # define FIND 1
 # define CONTINUE 1
-# define SIZEPIC_WIDTH 1680
-# define SIZEPIC_HEIGHT 1050
+# define SIZEPIC_WIDTH 1024//1680
+# define SIZEPIC_HEIGHT 768//1050
 # define TEXTWIDTH		64
 # define TEXTHEIGHT 	64
 # define ROTATE_LEFT	65361
@@ -226,6 +226,7 @@ int		is_full(t_file *file);
 int		already_up(char c, t_file *file);
 // --------------- free.c  ---------------
 void	free_tmp(char **tmp);
+void	free_gnl(char *tmp);
 // --------------- printer.c  ---------------
 void	print_part_tab(char *tab, int deb);
 void	print_tab(char **tab, char *msg);

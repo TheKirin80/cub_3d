@@ -41,13 +41,13 @@ OBJS = $(OBJS_PARS) $(OBJS_GAME) $(OBJS_GARB) $(OBJS_MAIN)
 
 INC		= -I includes -I mlx_linux -I /usr/include
 
-NAME 	= cub_3d
+NAME 	= cub3D
 
 CC 		= clang
 
 RM 		= rm -f
 
-CFLAGS	= -Wall -Wextra -Werror -g3 #-fsanitize=address,leak,undefined
+CFLAGS	= -Wall -Wextra -Werror -g3 -fsanitize=address,leak,undefined
 
 all:		${NAME}
 

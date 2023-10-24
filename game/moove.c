@@ -6,7 +6,7 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 22:23:25 by akefeder          #+#    #+#             */
-/*   Updated: 2023/10/23 17:33:32 by akefeder         ###   ########.fr       */
+/*   Updated: 2023/10/24 12:23:49 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void up_moove(t_file *file)
 		file->player->posx = file->player->posx + file->player->dirx * file->player->moovespeed;
 	if (file->map->map[(int)(file->player->posy + file->player->diry * file->player->moovespeed * 2.0)][(int)(file->player->posx)] != '1')
 		file->player->posy = file->player->posy + file->player->diry * file->player->moovespeed;
-	printf("posx = %f, posy = %f\n", file->player->posx, file->player->posy);
+	//printf("posx = %f, posy = %f\n", file->player->posx, file->player->posy);
 	raycasting(file);
 }
 
@@ -28,7 +28,7 @@ void down_moove(t_file *file)
 		file->player->posx = file->player->posx - file->player->dirx * file->player->moovespeed;
 	if (file->map->map[(int)(file->player->posy - file->player->diry * file->player->moovespeed * 2.0)][(int)(file->player->posx)] != '1')
 		file->player->posy = file->player->posy - file->player->diry * file->player->moovespeed;
-	printf("posx = %f, posy = %f\n", file->player->posx, file->player->posy);
+	//printf("posx = %f, posy = %f\n", file->player->posx, file->player->posy);
 	raycasting(file);
 }
 
@@ -38,7 +38,7 @@ void right_moove(t_file *file)
 		file->player->posx = file->player->posx - file->player->diry * file->player->moovespeed;
 	if (file->map->map[(int)(file->player->posy + file->player->dirx * file->player->moovespeed * 2.0)][(int)(file->player->posx)] != '1')
 		file->player->posy = file->player->posy + file->player->dirx * file->player->moovespeed;
-	printf("posx = %f, posy = %f\n", file->player->posx, file->player->posy);
+	//printf("posx = %f, posy = %f\n", file->player->posx, file->player->posy);
 	raycasting(file);
 }
 
@@ -48,7 +48,7 @@ void left_moove(t_file *file)
 		file->player->posx = file->player->posx + file->player->diry * file->player->moovespeed;
 	if (file->map->map[(int)(file->player->posy - file->player->dirx * file->player->moovespeed * 2.0)][(int)(file->player->posx)] != '1')
 		file->player->posy = file->player->posy - file->player->dirx * file->player->moovespeed;
-	printf("posx = %f, posy = %f\n", file->player->posx, file->player->posy);
+	//printf("posx = %f, posy = %f\n", file->player->posx, file->player->posy);
 	raycasting(file);
 }
 
@@ -56,7 +56,7 @@ int	gest_moove(int keycode, t_file *file)
 {
     //printf("je suis ici\n");
 	file->keycode = keycode;
-	printf("keycode : %i\n",keycode);
+	//printf("keycode : %i\n",keycode);
 	if (keycode == KEY_A)
 		left_moove(file);
 	if (keycode == KEY_D)

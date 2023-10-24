@@ -6,7 +6,7 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 23:42:52 by akefeder          #+#    #+#             */
-/*   Updated: 2023/03/25 00:14:09 by akefeder         ###   ########.fr       */
+/*   Updated: 2023/10/24 18:34:52 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	verif_single_pos(t_file *file)
 	char	ret;
 
 	i = 0;
-	ret = 'F';
+	//ret = 'F';
 	while (file->map->map[i] != NULL)
 	{
 		j = 0;
