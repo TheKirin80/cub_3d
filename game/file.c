@@ -6,7 +6,7 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 17:34:09 by akefeder          #+#    #+#             */
-/*   Updated: 2023/10/25 16:40:19 by akefeder         ###   ########.fr       */
+/*   Updated: 2023/10/25 17:33:19 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,15 @@ t_player	*charg_player(char orient, int i, int j)
 	t_player	*player;
 
 	player = malloc(sizeof(t_player));
+	if (player == NULL)
+		return (NULL);
 	player->orient = orient;
 	player->posx = j + 0.5;
 	player->posy = i + 0.5;
 	return (player);
 }
 
-void	init_player(t_file *file)
+int	init_player(t_file *file)
 {
 	int	i;
 	int	j;
@@ -39,6 +41,8 @@ void	init_player(t_file *file)
 			if (file->map->map[i][j] != '1' && file->map->map[i][j] != '0')
 			{
 				file->player = charg_player(file->map->map[i][j], i, j);
+				if (file->player == NULL)
+					return (ERROR);
 				init_component(file);
 				file->map->map[i][j] = '0';
 				find = 1;
@@ -47,6 +51,7 @@ void	init_player(t_file *file)
 		}
 		i++;
 	}
+	return (OK);
 }
 
 int	charg_file(t_file *file)
@@ -58,7 +63,8 @@ int	charg_file(t_file *file)
 			SIZEPIC_HEIGHT, "cub_3d");
 	if (!file->win)
 		return (ERROR);
-	init_player(file);
+	if (init_player(file) == ERROR)
+		return (ERROR);
 	if (load_img(file) == ERROR)
 		return (ERROR);
 	if (raycasting(file) == ERROR)
