@@ -6,7 +6,7 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 23:42:52 by akefeder          #+#    #+#             */
-/*   Updated: 2023/10/25 15:52:54 by akefeder         ###   ########.fr       */
+/*   Updated: 2023/10/25 16:36:58 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,8 +102,6 @@ int	verif_all_close(t_file *file)
 	}
 	return (OK);
 }
-
-
 
 int	verif_map(t_file *file)
 {

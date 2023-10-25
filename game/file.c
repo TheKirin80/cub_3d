@@ -6,7 +6,7 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 17:34:09 by akefeder          #+#    #+#             */
-/*   Updated: 2023/10/24 21:59:46 by akefeder         ###   ########.fr       */
+/*   Updated: 2023/10/25 16:40:19 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ int	charg_file(t_file *file)
 	init_player(file);
 	if (load_img(file) == ERROR)
 		return (ERROR);
-	print_tab(file->map->map, "Dans le charg file");
 	if (raycasting(file) == ERROR)
 		return (ERROR);
 	return (OK);

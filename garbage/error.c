@@ -6,7 +6,7 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 12:57:09 by akefeder          #+#    #+#             */
-/*   Updated: 2023/10/24 22:08:55 by akefeder         ###   ########.fr       */
+/*   Updated: 2023/10/25 16:35:40 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,15 @@
 int	gest_error(int code, t_file *file)
 {
 	if (code == 1)
-		ft_putstr_fd("Error : false parameters\n", 2);
+		ft_putstr_fd("Error\nFalse parameters\n", 2);
 	else if (code == 2)
 	{
-		ft_putstr_fd("Error : map don't follow the rules\n", 2);
+		ft_putstr_fd("Error\nMap don't follow the rules\n", 2);
 	}
 	else
 	{
 		free_file(file);
-		ft_putstr_fd("Error : Cannot print map\n", 2);
+		ft_putstr_fd("Error\nCannot print map\n", 2);
 	}
 	exit (1);
 }

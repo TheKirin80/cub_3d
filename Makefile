@@ -10,7 +10,6 @@ PARS_FILES	=	check_line.c\
 				get_next_line_utils.c\
 				param_verif_background.c\
 				utils_param_verif_background.c\
-				printer.c\
 				parsing.c\
 				tmp.c\
 				old_map.c\
