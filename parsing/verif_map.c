@@ -6,7 +6,7 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 23:42:52 by akefeder          #+#    #+#             */
-/*   Updated: 2023/10/24 21:05:13 by akefeder         ###   ########.fr       */
+/*   Updated: 2023/10/25 15:52:54 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,8 +92,9 @@ int	verif_all_close(t_file *file)
 		j = 0;
 		while (file->map->map[i][j] != '\0')
 		{
-			if (file->map->map[i][j] == '0'
-				&& verif_encaps_zero(file, i, j) == ERROR)
+			if ((file->map->map[i][j] == '0'
+				|| file->map->map[i][j] == file->map->orient)
+					&& verif_encaps_zero(file, i, j) == ERROR)
 				return (ERROR);
 			j++;
 		}
@@ -102,15 +103,18 @@ int	verif_all_close(t_file *file)
 	return (OK);
 }
 
-//faire une fonction pour checker si tout les caractere de la map sont bon 
+
 
 int	verif_map(t_file *file)
 {
 	int	i;
-	//la faire ici 
+
 	if (verif_single_pos(file) == ERROR)
 		return (ERROR);
-	sizing_map(file);
+	if (sizing_map(file) == ERROR)
+		return (ERROR);
+	if (verif_carac_valid(file) == ERROR)
+		return (ERROR);
 	i = 0;
 	while (file->map->map[i] != NULL)
 	{
@@ -121,6 +125,5 @@ int	verif_map(t_file *file)
 	if (verif_all_close(file) == ERROR)
 		return (ERROR);
 	change_two_occurence(file);
-	printf("\t\t\tCette fonction est passe\n");
 	return (OK);
 }

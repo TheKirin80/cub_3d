@@ -6,7 +6,7 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 15:28:43 by akefeder          #+#    #+#             */
-/*   Updated: 2023/10/24 22:03:48 by akefeder         ###   ########.fr       */
+/*   Updated: 2023/10/25 15:55:24 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -236,8 +236,10 @@ int		verif_single_pos(t_file *file);
 int		modif_for_traitment(t_file *file, int i);
 int		verif_map(t_file *file);
 // --------------- verif_map_tool_1.c  ---------------
-void	sizing_map(t_file *file);
+int		sizing_map(t_file *file);
 void	change_two_occurence(t_file *file);
+int		ft_strcmp(char c, char *cmp);
+int		verif_carac_valid(t_file *file);
 // --------------- moove.c  ---------------
 int		gest_moove(int keycode, t_file *file);
 // --------------- raycasting.c  ---------------

@@ -6,7 +6,7 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 15:28:58 by akefeder          #+#    #+#             */
-/*   Updated: 2023/10/24 22:13:53 by akefeder         ###   ########.fr       */
+/*   Updated: 2023/10/25 15:51:38 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	main(int ac, char **av)
 	if (ac != 2 || test_fich(av[1]) == ERROR)
 		return (gest_error(1, &file));
 	if (parsing(av[1], &file))
-		return (gest_error(2, &file)); // A revoir les conditions d'une map valide ainsi que les caracteres
+		return (gest_error(2, &file));
 	if (charg_file(&file) == ERROR)
 		return (gest_error(3, &file));
 	mlx_hook(file.win, KeyPress, KeyPressMask, gest_moove, &file);
@@ -55,6 +55,3 @@ int	main(int ac, char **av)
 	mlx_loop(file.mlx);
 	return (0);
 }
-
-//penser a free le player , la ray
-//penser a fixer la taille de l'ecran et remplacer dans le programme pour eviter les overflows

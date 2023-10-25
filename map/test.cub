@@ -24,3 +24,22 @@ WE END
 
  bash -c 'bash <(curl -s https://raw.githubusercontent.com/tmatis/funcheck/main/scripts/install.sh)'
  
+NO ./img/greystone.xpm
+EA ./img/redbrick.xpm
+WE ./img/bluestone.xpm
+SO       ./img/mossy.xpm   
+F   0,255,0
+C 255,255,255
+
+
+111111111
+100000001
+101100001
+10000N001
+101000001
+100000001
+111111111
+
+111111111
+100000001
+111111111
