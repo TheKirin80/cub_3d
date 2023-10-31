@@ -6,7 +6,7 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 22:53:41 by akefeder          #+#    #+#             */
-/*   Updated: 2023/10/24 21:54:41 by akefeder         ###   ########.fr       */
+/*   Updated: 2023/10/31 17:13:04 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	draw_verticale_line(t_file *file, double x)
 		my_mlx_pixel_put((&file->img_map), (int)x, i, file->ceil);
 		i++;
 	}
-	if (i <= file->ray->drawend)
+	if (i < file->ray->drawend)
 		draw_texture(file, x, i);
 	i = file->ray->drawend;
 	while (i < SIZEPIC_HEIGHT)

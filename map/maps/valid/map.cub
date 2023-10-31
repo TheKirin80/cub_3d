@@ -1,0 +1,13 @@
+NO ./img/greystone.xpm
+EA ./img/redbrick.xpm
+WE ./img/bluestone.xpm
+SO       ./img/mossy.xpm  
+
+F 14, 12, 23
+C 9, 8, 16
+
+111111
+100001
+100S01
+100101
+111111

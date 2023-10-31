@@ -48,7 +48,7 @@ CC 		= clang
 
 RM 		= rm -f
 
-CFLAGS	= -Wall -Wextra -Werror #-g3 #-fsanitize=address,leak,undefined
+CFLAGS	= -Wall -Wextra -Werror -g3 -fsanitize=address,leak,undefined
 
 all:		${NAME}
 

@@ -1,0 +1,15 @@
+NO ./img/greystone.xpm
+EA ./img/redbrick.xpm
+WE ./img/bluestone.xpm
+SO       ./img/mossy.xpm  
+
+F 00,0,150
+C 50,30,0
+
+1 111111111
+10000000111
+100S00111
+10000000111
+10010010001
+11110000101
+   11111111
